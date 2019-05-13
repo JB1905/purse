@@ -4620,10 +4620,10 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-native-color-picker@^1.0.0-beta.3.4:
-  version "1.0.0-beta.3.4"
-  resolved "https://registry.yarnpkg.com/native-color-picker/-/native-color-picker-1.0.0-beta.3.4.tgz#7e5bb9889e8fa5652810fcdb754c03f359b010b0"
-  integrity sha512-OSoflU+re7cblka/P8yu5X394wrnyZ9gQBHYpKQBTkPzLQGYm4v3MZr0oxRedaQQWJwuAnGEdu7JD138KRtYlA==
+native-color-picker@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/native-color-picker/-/native-color-picker-1.0.0.tgz#1d136cbfeed8a8601a2fc76ae22105d23030ee20"
+  integrity sha512-pjp9wlx1cxEoglZafknAMefmtzcWcAP3WJa+wLWMzaZjkRPJKALv3tIC94fEt1+vY1Y7jhysZjI1IkvZqRlTEA==
   dependencies:
     color "^3.1.1"
     color-sort "^0.0.1"
@@ -5291,8 +5291,9 @@ react-native-gesture-handler@~1.0.14:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-"react-native-maps@github:expo/react-native-maps#v0.22.1-exp.0":
+react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
+  uid e6f98ff7272e5d0a7fe974a41f28593af2d77bb2
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
 
 react-native-reanimated@1.0.0-alpha.11:
