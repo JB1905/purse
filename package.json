@@ -22,7 +22,7 @@
     "react-native-swipeout": "^2.3.6",
     "react-native-touchable-scale": "^2.0.0",
     "react-navigation": "^3.9.1",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.1.1",
