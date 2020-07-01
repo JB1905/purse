@@ -21,7 +21,7 @@
     "@react-navigation/stack": "^5.2.9",
     "email-validator": "^2.0.4",
     "expo": "^37.0.4",
-    "expo-apple-authentication": "~2.1.0",
+    "expo-apple-authentication": "~2.2.1",
     "expo-camera": "~8.2.0",
     "expo-constants": "~9.0.0",
     "expo-facebook": "~8.1.0",
