@@ -18,7 +18,7 @@
     "@react-native-community/segmented-control": "1.0.2",
     "@react-navigation/bottom-tabs": "^5.2.5",
     "@react-navigation/native": "^5.1.4",
-    "@react-navigation/stack": "^5.2.9",
+    "@react-navigation/stack": "^5.8.0",
     "email-validator": "^2.0.4",
     "expo": "^37.0.4",
     "expo-apple-authentication": "~2.1.0",
