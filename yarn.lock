@@ -1806,10 +1806,10 @@
     "@types/react" "*"
     "@types/react-instantsearch-core" "*"
 
-"@types/react-instantsearch@^6.3.0":
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/@types/react-instantsearch/-/react-instantsearch-6.3.0.tgz#d9ba127a685c12c2167d0cbc727f063d50196616"
-  integrity sha512-DR2HS5UE46CyEoTdjknTp55YDbYmEEFX0XZLV2SEK5BZ9avImKjwD+5FfrRFS9dSVY6Gm+SYlCrYLji3rgrWHQ==
+"@types/react-instantsearch@^6.8.0":
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/@types/react-instantsearch/-/react-instantsearch-6.8.0.tgz#ca5f8580e7e7791f30d347962cd27298c4c1d8cd"
+  integrity sha512-hwYzga/kusSYQiSt/dE284DPpKdVRMuxrB8zwepnkfhFXeqr0o/p+NC7YsUeQx5suwvALQ6D+r3n3NO2NmJgdg==
   dependencies:
     "@types/react-instantsearch-core" "*"
     "@types/react-instantsearch-dom" "*"
