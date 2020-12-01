@@ -1532,10 +1532,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.6.tgz#c7f2ac187c1f25aa8c30d11baa8f4398eca3bb84"
   integrity sha512-PpMoeXwPUoldCRKDuSi+zK5rT+sJTW6ri6RdGPkSKRzU77Q1d9IaR0O5IKvBj0XSdL3p+dcOa05gk35aGDffBQ==
 
-"@react-native-community/segmented-control@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@react-native-community/segmented-control/-/segmented-control-1.0.2.tgz#10fa049019aa11611a146f324b0cab058df93c70"
-  integrity sha512-S4JXPKdwkqq9rIn9AcZEcyWke4TGXAxWW38ENDS+vFG8dV54wY0qCBDx+W15ZQ9sw/wM4ul55a68XKdYHDBdxA==
+"@react-native-community/segmented-control@2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/segmented-control/-/segmented-control-2.2.1.tgz#5ca418d78c5f6051353c9586918458713b88a83c"
+  integrity sha512-BzxFbI9Iqv+31yVqEvCTzJYmwb8jOMTf/UPuC4Hj176tmEPqBpuDaGH+rkAFg1miOco3/43RQxiAZO+mkY40Fg==
 
 "@react-navigation/bottom-tabs@^5.2.5":
   version "5.2.5"
