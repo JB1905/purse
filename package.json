@@ -12,7 +12,9 @@
     "eject": "expo eject",
     "lint": "eslint 'src/**/*.{tsx,ts}' --fix",
     "prettier": "prettier --write 'src/**/*.{tsx,ts}'",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@mobily/stacks": "^0.9.4",
@@ -67,7 +69,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-firestore": "^0.14.0",
     "redux-persist": "^6.0.0",
-    "sentry-expo": "^3.0.4"
+    "sentry-expo": "^3.0.4",
+    "snyk": "^1.437.2"
   },
   "devDependencies": {
     "@babel/core": "~7.12.10",
@@ -99,5 +102,6 @@
       "npm run prettier",
       "npm run lint"
     ]
-  }
+  },
+  "snyk": true
 }
