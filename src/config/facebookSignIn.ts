@@ -4,23 +4,19 @@ export const signInWithFacebookAsync = async () => {
   try {
     await Facebook.initializeAsync(process.env.FACEBOOK_APP_ID);
 
-    const {
-      type,
-      token,
-      expirationDate,
-      permissions,
-      declinedPermissions,
-    } = await Facebook.logInWithReadPermissionsAsync({
+    const fb = await Facebook.logInWithReadPermissionsAsync({
       permissions: ['public_profile'],
     });
 
-    if (type === 'success') {
+    if (fb.type === 'success') {
       const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${token}`
+        `https://graph.facebook.com/me?access_token=${fb.token}`
       );
 
-      return token;
+      // return fb.token;
+      return await response.json();
     } else {
+      // TODO
     }
   } catch ({ message }) {
     alert(`Facebook Login Error: ${message}`);

@@ -25,9 +25,9 @@ const LocalAuthentication = () => {
             </ListItem.Title>
           </ListItem.Content>
 
-          {/* <Switch
-        value={value} onValueChange={updateLocalAuthentication}
-        /> */}
+          <Switch
+            // value={value} onValueChange={updateLocalAuthentication}
+            />
         </ListItem>
       </Box>
     </Container>

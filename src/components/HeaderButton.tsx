@@ -11,6 +11,7 @@ interface Props extends ButtonProps {
   readonly spaces?: boolean;
 }
 
+// TODO
 const HeaderButton = ({
   title,
   iconName,
@@ -53,12 +54,11 @@ const HeaderButton = ({
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 18
+    fontSize: 18,
   },
   button: {
     borderRadius: 20,
-  }
+  },
 });
-
 
 export default HeaderButton;

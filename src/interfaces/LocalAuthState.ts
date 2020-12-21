@@ -1,4 +1,4 @@
-import { TOGGLE_LOCAL_AUTH } from '../actions';
+import { TOGGLE_LOCAL_AUTH } from '../store/actions';
 
 export interface LocalAuthState {
   readonly localAuth: boolean;

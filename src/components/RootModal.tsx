@@ -7,6 +7,7 @@ import Maps from './Modals/Maps';
 
 import { ModalType } from '../enums/ModalType';
 
+// TODO
 const MODALS = {
   [ModalType.Welcome]: WelcomeScreen,
   [ModalType.Camera]: Camera,
@@ -22,7 +23,7 @@ const RootModal = () => {
 
   return (
     <Modal>
-      <ModalComponent />
+      <ModalComponent {...modalProps} />
     </Modal>
   );
 };

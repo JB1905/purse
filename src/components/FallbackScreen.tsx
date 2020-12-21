@@ -8,6 +8,7 @@ interface Props {
   readonly message?: string;
 }
 
+// TODO
 const FallbackScreen: React.FC<Props> = ({ title, message, children }) => {
   const { colors } = useTheme();
 
@@ -40,10 +41,10 @@ const FallbackScreen: React.FC<Props> = ({ title, message, children }) => {
           h3
           h3Style={{
             fontSize: 16,
-            color: colors.text,
             textAlign: 'center',
             opacity: 0.5,
             lineHeight: 24,
+            color: colors.text,
           }}
         >
           {message}
@@ -55,5 +56,26 @@ const FallbackScreen: React.FC<Props> = ({ title, message, children }) => {
   );
 };
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: '500',
+    textAlign: 'center',
+    lineHeight: 30,
+    marginBottom: 8,
+  },
+  message: {
+    fontSize: 16,
+    textAlign: 'center',
+    opacity: 0.5,
+    lineHeight: 24,
+  },
+});
+
 export default FallbackScreen;

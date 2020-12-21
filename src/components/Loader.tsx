@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
+// TODO
 interface Props extends ViewProps, ActivityIndicatorProps {}
 
 const Loader = ({ style, size = 'large', ...props }: Props) => {

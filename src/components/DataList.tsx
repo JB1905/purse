@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, RefreshControl, View, StyleSheet } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
+// TODO
 const DataList = ({ data }: any) => {
   return (
     <SwipeListView

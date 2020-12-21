@@ -9,7 +9,6 @@ import React, {
 import {
   ActionSheetIOS,
   Alert,
-  // Picker,
   findNodeHandle,
   // Image,
   // Modal,
@@ -61,18 +60,16 @@ const FinanceManager = ({
 
   const { colors } = useTheme();
 
-  const ref = useRef(null);
+  const ref = useRef();
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState(''); // TODO
   const [loading, setLoading] = useState(false);
 
   const [openModal, setOpenModal] = useState(false);
 
   useFirestoreConnect([Collection.Categories]);
 
-  const categories = useSelector(
-    (state) => state.firestore.ordered.categories
-  );
+  const categories = useSelector((state) => state.firestore.ordered.categories);
 
   const { register, handleSubmit, reset, setValue, watch } = useForm<FormData>({
     defaultValues: {
@@ -200,34 +197,40 @@ const FinanceManager = ({
     );
   };
 
+  // const renderSection = () => {
+  //   switch() {
+
+  //   }
+  // };
+
   return (
     <Container keyboard scrollEnabled full>
       <StatusBar isModal />
 
       <Box paddingY={8}>
-        <Suspense fallback={<Loader />}>
-          {/* <Stack space={8}> */}
-          {categories.length > 0 ? (
-            <>
-              <Input
-                onChangeText={(text) => setValue('value', text)}
-                defaultValue={watch().value}
-                label="Amount"
-                placeholder="Amount"
-                keyboardType="number-pad"
-                flat
-              />
+        {/* <Suspense fallback={<Loader />}> */}
+        {/* <Stack space={8}> */}
+        {categories.length > 0 ? (
+          <>
+            <Input
+              onChangeText={(text) => setValue('value', text)}
+              defaultValue={watch().value}
+              label="Amount"
+              placeholder="Amount"
+              keyboardType="number-pad"
+              flat
+            />
 
-              <Input
-                onChangeText={(text) => setValue('title', text)}
-                defaultValue={watch().title}
-                label="Title"
-                placeholder="Title"
-                flat
-              />
+            <Input
+              onChangeText={(text) => setValue('title', text)}
+              defaultValue={watch().title}
+              label="Title"
+              placeholder="Title"
+              flat
+            />
 
-              <SectionBox title="Category">
-                {/* <Picker
+            <SectionBox title="Category">
+              {/* <Picker
                   selectedValue={watch().category}
                   onValueChange={(value) => setValue('category', value)}
                   style={{
@@ -246,57 +249,57 @@ const FinanceManager = ({
                     />
                   ))}
                 </Picker> */}
-              </SectionBox>
+            </SectionBox>
 
-              <SectionBox title="Place">
-                <MapView
-                  pitchEnabled={false}
-                  rotateEnabled={false}
-                  zoomEnabled={false}
-                  scrollEnabled={false}
-                  // onPress={() => setOpenModal('map')}
-                  style={{ width: '100%', height: 240 }}
-                  cacheEnabled
-                >
-                  {/* <Marker coordinate={coords} /> */}
-                </MapView>
-              </SectionBox>
+            <SectionBox title="Place">
+              <MapView
+                pitchEnabled={false}
+                rotateEnabled={false}
+                zoomEnabled={false}
+                scrollEnabled={false}
+                // onPress={() => setOpenModal('map')}
+                style={{ width: '100%', height: 240 }}
+                cacheEnabled
+              >
+                {/* <Marker coordinate={coords} /> */}
+              </MapView>
+            </SectionBox>
 
-              <Button
-                title="Add Image"
-                onPress={showImageSourcesList}
-                ref={ref}
-              />
+            <Button
+              title="Add Image"
+              onPress={showImageSourcesList}
+              ref={ref}
+            />
 
-              {/* {getValues().images.map((image) => (
+            {/* {getValues().images.map((image) => (
               <Image
                 source={{ uri: image.uri }}
                 style={{ width: 100, height: 100 }}
               />
             ))} */}
 
-              {/* <Modal visible={!!openModal} presentationStyle="formSheet">
+            {/* <Modal visible={!!openModal} presentationStyle="formSheet">
               <Maps />
             </Modal> */}
 
-              {/* <Modal visible={true} presentationStyle="formSheet">
+            {/* <Modal visible={true} presentationStyle="formSheet">
               <Camera />
             </Modal> */}
-            </>
-          ) : (
-            <FallbackScreen
-              title="No any categories"
-              message="Before add expense create new category"
-            >
-              <Button
-                title="Add it here"
-                onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)}
-                type="clear"
-              />
-            </FallbackScreen>
-          )}
-          {/* </Stack> */}
-        </Suspense>
+          </>
+        ) : (
+          <FallbackScreen
+            title="No any categories"
+            message="Before add expense create new category"
+          >
+            <Button
+              title="Add it here"
+              onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)}
+              type="clear"
+            />
+          </FallbackScreen>
+        )}
+        {/* </Stack> */}
+        {/* </Suspense> */}
       </Box>
 
       {loading && <Loader />}

@@ -1,4 +1,4 @@
-import { SET_THEME } from '../actions';
+import { SET_THEME } from '../store/actions';
 
 import { Theme } from '../enums/Theme';
 

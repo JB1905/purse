@@ -6,8 +6,9 @@ interface Props extends TextProps {
   readonly message: string;
 }
 
+// TODO
 const ErrorMessage = ({ message }: Props) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext); // TODO safe
 
   return (
     <Text
@@ -23,6 +24,12 @@ const ErrorMessage = ({ message }: Props) => {
   );
 };
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  message: {
+    // paddingVertical: 6,
+    // textAlign: 'center',
+    // fontWeight: '500',
+  },
+});
 
 export default ErrorMessage;

@@ -11,7 +11,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Icon from '../../components/Icon';
 import Loader from '../../components/Loader';
-import ErrorMessage from '../../components/ErrorMessage'; // lazy?
+import ErrorMessage from '../../components/ErrorMessage';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -27,16 +27,20 @@ type FormData = {
 const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
   const { colors } = useTheme();
 
-  const { login, facebookSignIn, googleSignIn } = useAuth();
+  const { login } = useAuth();
 
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(false);
 
   const [securePassword, setSecurePassword] = useState(true);
 
-  const { register, handleSubmit, setValue, watch, errors } = useForm<
-    FormData
-  >();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    errors,
+  } = useForm<FormData>();
 
   useEffect(() => {
     register('email', { required: true });
@@ -76,9 +80,6 @@ const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
             <Text h3>Your personal finance assistant</Text>
           </Stack>
 
-          {/* <Button title="Google" onPress={googleSignIn} />
-        <Button title="Facebook" onPress={facebookSignIn} /> */}
-
           <Stack>
             <Input
               onChangeText={(text) => setValue('email', text)}
@@ -109,7 +110,7 @@ const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
               }
             />
 
-            {/* {error?.message && <ErrorMessage message={error.message} />} */}
+            {error?.message && <ErrorMessage message={error.message} />}
 
             <Button title="Sign In" onPress={handleSubmit(onSubmit)} />
           </Stack>

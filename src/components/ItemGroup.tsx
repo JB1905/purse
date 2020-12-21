@@ -16,10 +16,7 @@ const ItemGroup = ({ title, items, style }: Props) => {
   return (
     <View style={style}>
       <Text
-        style={StyleSheet.flatten([
-          { color: colors.text },
-          styles.groupTitle,
-        ])}
+        style={StyleSheet.flatten([{ color: colors.text }, styles.groupTitle])}
       >
         {title}
       </Text>
@@ -44,7 +41,7 @@ const ItemGroup = ({ title, items, style }: Props) => {
               </ListItem.Title>
             </ListItem.Content>
 
-            <ListItem.Chevron />
+            {/* <ListItem.Chevron /> */}
           </ListItem>
         ))}
       </View>

@@ -1,7 +1,7 @@
 export interface ICategory {
-  color: string;
-  icon: string;
-  id: string;
-  name: string;
-  user: string;
+  readonly color: string;
+  readonly icon: string;
+  readonly id: string;
+  readonly name: string;
+  readonly user: string;
 }

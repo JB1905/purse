@@ -4,10 +4,6 @@ import Container from '../../components/Container';
 import SearchBar from '../../components/SearchBar';
 import FallbackScreen from '../../components/FallbackScreen';
 
-import type { LoggedInProps } from '../../types/Navigation';
-
-import { Route } from '../../enums/Route';
-
 const Search = () => {
   const [query, setQuery] = useState('');
 

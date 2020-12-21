@@ -35,10 +35,7 @@ const SegmentedControl = lazy(
 
 const DataList = lazy(() => import('../../components/DataList'));
 
-const Category = ({
-  route,
-  navigation,
-}:LoggedInProps<Route.CATEGORY>) => {
+const Category = ({ route, navigation }: LoggedInProps<Route.CATEGORY>) => {
   const { id, name } = route.params;
 
   const { colors } = useTheme();
@@ -91,10 +88,10 @@ const Category = ({
     navigation.setOptions({
       headerTitle: name,
       headerRight: () => (
-        <TouchableOpacity ref={ref} onPress={showActionSheet}>
-          {/* <Text>aaa</Text> */}
-        </TouchableOpacity>
-        // <HeaderButton iconName="more" ref={ref} onPress={showActionSheet} />
+        // <TouchableOpacity ref={ref} onPress={showActionSheet}>
+        //   {/* <Text>aaa</Text> */}
+        // </TouchableOpacity>
+        <HeaderButton iconName="more" ref={ref} onPress={showActionSheet} />
       ),
     });
   }, [navigation]);
@@ -106,6 +103,7 @@ const Category = ({
   const data = useSelector((state: any) => state.firestore.ordered.data);
 
   return data ? (
+    // TODO hoc
     <Suspense fallback={<Loader />}>
       {data.length > 0 ? (
         <>

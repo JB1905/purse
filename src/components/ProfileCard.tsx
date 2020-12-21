@@ -4,6 +4,7 @@ import { useTheme } from '@react-navigation/native';
 import { Avatar, ListItem, ListItemProps } from 'react-native-elements';
 import gravatar from 'gravatar';
 
+// TODO
 interface Props extends ListItemProps {
   readonly data: any;
 }
@@ -52,7 +53,7 @@ const ProfileCard = ({ data, style, ...props }: Props) => {
         </ListItem.Subtitle>
       </ListItem.Content>
 
-      <ListItem.Chevron />
+      {/* <ListItem.Chevron /> */}
     </ListItem>
   );
 };

@@ -4,9 +4,8 @@ import {
   ScrollView,
   ScrollViewProps,
   KeyboardAvoidingView,
-  Platform,
 } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+// import { useTheme } from '@react-navigation/native';
 
 interface Props extends ScrollViewProps {
   readonly spaces?: boolean;
@@ -23,7 +22,6 @@ const Container = ({
   ...props
 }: Props) => (
   <KeyboardAvoidingView
-    style={{ flex: 1 }}
     behavior="padding"
     enabled={keyboard}
   >
@@ -33,11 +31,9 @@ const Container = ({
       contentContainerStyle={StyleSheet.flatten([
         contentContainerStyle,
         {
-          flexGrow: 1,
-          // paddingHorizontal: spaces ? 30 : 0,
-          // paddingVertical: 20,
           justifyContent: full ? 'center' : 'flex-start',
-          flex: full ? 1 : 0,
+          height: '100%',
+          // flex: full ? 1 : 0,
           // backgroundColor: colors.card,
           maxWidth: full ? 500 : undefined,
           alignSelf: full ? 'center' : undefined,
@@ -48,5 +44,15 @@ const Container = ({
   </KeyboardAvoidingView>
 );
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  keyboard: {
+    flex: 1,
+  },
+  scroll: {
+    flexGrow: 1,
+    // paddingHorizontal: spaces ? 30 : 0,
+    // paddingVertical: 20,
+  },
+});
+
 export default Container;

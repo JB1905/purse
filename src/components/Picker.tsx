@@ -1,9 +1,6 @@
-import React from 'react'
+import React from 'react';
 
+// TODO
 export const Picker = () => {
-  return (
-    <>
-      
-    </>
-  )
-}
+  return <></>;
+};

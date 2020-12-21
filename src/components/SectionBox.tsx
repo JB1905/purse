@@ -6,6 +6,7 @@ interface Props {
   readonly title?: string;
 }
 
+// TODO
 const SectionBox: React.FC<Props> = ({
   title,
   // headerActions,
@@ -14,23 +15,12 @@ const SectionBox: React.FC<Props> = ({
   const { colors } = useTheme();
 
   return (
-    <View
-      style={
-        {
-          // marginVertical: 6
-        }
-      }
-    >
+    <View>
       {title && (
         <Text
           style={{
-            textTransform: 'uppercase',
-            fontWeight: '500',
-            fontSize: 14,
             color: colors.text,
-            opacity: 0.5,
-            // marginVertical: 6,
-            marginHorizontal: 20,
+            // TODO title
           }}
         >
           {title}
@@ -39,9 +29,8 @@ const SectionBox: React.FC<Props> = ({
 
       <View
         style={{
-          overflow: 'hidden',
           backgroundColor: colors.card,
-          height: 370,
+          // TODO content
         }}
       >
         {children}
@@ -51,6 +40,19 @@ const SectionBox: React.FC<Props> = ({
 };
 
 // TODO StyleSheet
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  title: {
+    textTransform: 'uppercase',
+    fontWeight: '500',
+    fontSize: 14,
+    opacity: 0.5,
+    // marginVertical: 6,
+    marginHorizontal: 20,
+  },
+  content: {
+    height: 370,
+    overflow: 'hidden',
+  },
+});
 
 export default SectionBox;

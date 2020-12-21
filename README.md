@@ -41,13 +41,13 @@ Personal finance assistant
 ##### 1. Clone repo
 
 ```sh
-git clone https://github.com/JB1905/purse.git
+$ git clone https://github.com/JB1905/purse.git
 ```
 
 ##### 2. Go to directory
 
 ```sh
-cd purse
+$ cd /path/to/purse
 ```
 
 ## Build with

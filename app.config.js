@@ -11,6 +11,9 @@ export default {
       resizeMode: 'contain',
       backgroundColor: '#ffffff',
     },
+    experiments: {
+      turboModules: true,
+    },
     updates: {
       fallbackToCacheTimeout: 0,
     },
@@ -29,7 +32,7 @@ export default {
     android: {
       versionCode: 1,
       package: 'com.jbiesiada.purse',
-      permissions: ['CAMERA'],
+      permissions: ['CAMERA'], // TODO
       config: {
         googleMaps: {
           apiKey: process.env.GOOGLE_MAPS_API_KEY,

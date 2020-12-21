@@ -8,7 +8,7 @@ import { Box } from '@mobily/stacks';
 import Container from '../../../components/Container';
 import Icon from '../../../components/Icon';
 
-import { SET_THEME } from '../../../actions/themeActions';
+import { SET_THEME } from '../../../store/actions/themeActions';
 
 const APPEARANCE_MODES = ['Automatic', 'Dark', 'Light']; // TODO
 

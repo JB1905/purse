@@ -6,6 +6,7 @@ import {
 } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
 
+// TODO
 const SearchBar = ({
   containerStyle,
   inputContainerStyle,
@@ -22,11 +23,14 @@ const SearchBar = ({
       {...props}
       platform={Platform.OS === 'ios' ? 'ios' : 'android'}
       containerStyle={{
+        paddingHorizontal: 10, // TODO only ios
         backgroundColor: 'transparent',
         // alignSelf: 'center',
         // maxWidth: 500,
       }}
-      inputContainerStyle={{ backgroundColor: colors.border }}
+      inputContainerStyle={{ backgroundColor: colors.border, 
+        height: 40 // TODO only ios
+       }}
       inputStyle={{ color: colors.text }}
       cancelButtonProps={{ color: colors.primary }}
     />
@@ -34,4 +38,5 @@ const SearchBar = ({
 };
 
 // const styles = StyleSheet.create({});
+
 export default SearchBar;

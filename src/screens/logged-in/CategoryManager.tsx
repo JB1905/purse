@@ -17,6 +17,8 @@ import StatusBar from '../../components/StatusBar';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
 import SectionBox from '../../components/SectionBox';
+import IconPicker from '../../components/IconPicker';
+import ColorPicker from '../../components/IconPicker';
 
 import { colors as categoryColors } from '../../constants/colors';
 import { categoryIcons } from '../../constants/icons';
@@ -26,8 +28,8 @@ import type { MainProps } from '../../types/Navigation';
 import { Collection } from '../../enums/Collection';
 import { Route } from '../../enums/Route';
 
-const IconPicker = lazy(() => import('../../components/IconPicker'));
-const ColorPicker = lazy(() => import('../../components/ColorPicker'));
+// const IconPicker = lazy(() => import('../../components/IconPicker'));
+// const ColorPicker = lazy(() => import('../../components/ColorPicker'));
 
 type FormData = {
   name: string;
@@ -185,21 +187,21 @@ const CategoryManager = ({
         />
 
         <SectionBox>
-          <Suspense fallback={<Loader />}>
-            {tab === Tabs.Colour ? (
-              <ColorPicker
-                onSelect={(color) => setValue('color', color)}
-                selectedColor={watch().color}
-                colors={categoryColors}
-              />
-            ) : (
-              <IconPicker
-                onSelect={(icon) => setValue('icon', icon)}
-                selectedIcon={watch().icon}
-                icons={categoryIcons}
-              />
-            )}
-          </Suspense>
+          {/* <Suspense fallback={<Loader />}> */}
+          {tab === Tabs.Colour ? (
+            <ColorPicker
+              onSelect={(color) => setValue('color', color)}
+              selectedColor={watch().color}
+              colors={categoryColors}
+            />
+          ) : (
+            <IconPicker
+              onSelect={(icon) => setValue('icon', icon)}
+              selectedIcon={watch().icon}
+              icons={categoryIcons}
+            />
+          )}
+          {/* </Suspense> */}
         </SectionBox>
         {/* </Stack> */}
       </Box>

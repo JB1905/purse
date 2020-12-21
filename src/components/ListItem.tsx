@@ -30,6 +30,7 @@ const ListItem = ({
       ])}
       bottomDivider
       Component={
+        // TODO isIos
         Platform.OS === 'ios' ? TouchableHighlight : TouchableNativeFeedback
       }
     >
@@ -49,7 +50,5 @@ const ListItem = ({
     </BaseListItem>
   );
 };
-
-// const styles = StyleSheet.create({});
 
 export default ListItem;

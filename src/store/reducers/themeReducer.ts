@@ -1,10 +1,10 @@
 import { SET_THEME } from '../actions';
 
-import { Theme } from '../enums/Theme';
+import { Theme } from '../../enums/Theme';
 
-import { ThemeState } from '../interfaces/ThemeState';
+import { ThemeState } from '../../interfaces/ThemeState';
 
-import type { ThemeActionTypes } from '../types/ThemeActionTypes';
+import type { ThemeActionTypes } from '../../types/ThemeActionTypes';
 
 const initialState: ThemeState = {
   theme: Theme.Light,

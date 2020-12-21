@@ -9,7 +9,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
 import StatusBar from '../../components/StatusBar';
-import ErrorMessage from '../../components/ErrorMessage'; // lazy?
+// import ErrorMessage from '../../components/ErrorMessage';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -29,9 +29,13 @@ const ResetPassword = ({
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, setValue, getValues, errors } = useForm<
-    FormData
-  >();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    errors,
+  } = useForm<FormData>();
 
   useEffect(() => {
     register('email', { required: true });

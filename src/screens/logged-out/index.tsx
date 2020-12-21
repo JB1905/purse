@@ -15,7 +15,7 @@ import { Route } from '../../enums/Route';
 
 const NativeStack = createNativeStackNavigator<LoggedOutParamList>();
 
-// TODO add helper isIos
+// TODO isIos = Platform.OS === 'ios'
 
 const CancelButton = () => {
   const navigation = useNavigation();

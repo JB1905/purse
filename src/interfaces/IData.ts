@@ -1,20 +1,20 @@
 export interface IData {
-  category: string;
-  coords: Coords;
-  date: Date;
-  id: string;
-  images: any[];
-  title: string;
-  type?: any;
-  value: string;
+  readonly category: string;
+  readonly coords: Coords;
+  readonly date: Date;
+  readonly id: string;
+  readonly images: any[];
+  readonly title: string;
+  readonly type?: any;
+  readonly value: string;
 }
 
 interface Date {
-  nanoseconds: number;
-  seconds: number;
+  readonly nanoseconds: number;
+  readonly seconds: number;
 }
 
 interface Coords {
-  lat: number;
-  lon: number;
+  readonly lat: number;
+  readonly lon: number;
 }

@@ -13,8 +13,6 @@ const SegmentedControl = (props: SegmentedControlProps) => (
 
 const styles = StyleSheet.create({
   control: {
-    marginTop: 6, // TODO
-    marginBottom: 8, // TODO
     alignSelf: 'center',
     maxWidth: 350,
     width: '100%',

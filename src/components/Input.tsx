@@ -26,14 +26,14 @@ const Input = ({
 }: Props) => {
   const { colors } = useTheme();
 
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext); // TODO safe
 
   // console.log(props);
 
   return (
     <BaseInput
       {...props}
-      errorMessage={errorMessage}
+      // errorMessage={errorMessage as string} // TODO
       leftIcon={
         errorMessage &&
         flat && (

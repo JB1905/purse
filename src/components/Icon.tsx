@@ -1,9 +1,10 @@
 import React from 'react';
-import { Icon as BaseIcon, IconProps, StyleSheet } from 'react-native-elements';
+import { Icon as BaseIcon, IconProps } from 'react-native-elements';
 import { Platform } from 'react-native';
 
 import { icons, categoryIcons } from '../constants/icons';
 
+// TODO
 const Icon = ({ type, name, ...props }: IconProps) => (
   <BaseIcon
     {...props}

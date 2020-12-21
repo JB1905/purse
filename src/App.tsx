@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { LogBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { registerRootComponent } from 'expo';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
 import { AppearanceProvider } from 'react-native-appearance';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  NavigationContainerRef,
+} from '@react-navigation/native';
 import { ThemeProvider } from 'react-native-elements';
 import { StacksProvider } from '@mobily/stacks';
 import { enableScreens } from 'react-native-screens';
 import { composeWrappers } from 'react-compose-wrappers';
 import { PersistGate } from 'redux-persist/integration/react';
+import { useReduxDevToolsExtension } from '@react-navigation/devtools';
 
 import Layout from './screens';
 
@@ -25,11 +30,8 @@ import { theme } from './constants/theme';
 
 import { store, persistor } from './store';
 
-import './errors' // TODO
-
 enableScreens();
 
-// -------------- move
 const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true,
@@ -41,12 +43,15 @@ const rrfProps = {
   dispatch: store.dispatch,
   createFirestoreInstance,
 };
-// -------------- move
 
 const App = () => {
   useUpdates();
 
   const { activeMode } = useAppearance();
+
+  const navigationRef = useRef<NavigationContainerRef>(null);
+
+  useReduxDevToolsExtension(navigationRef);
 
   const RootProvider = composeWrappers([
     (props) => <React.StrictMode>{props.children}</React.StrictMode>,
@@ -62,12 +67,13 @@ const App = () => {
     (props) => <SafeAreaProvider>{props.children}</SafeAreaProvider>,
     (props) => <AppearanceProvider>{props.children}</AppearanceProvider>,
     (props) => (
-      <NavigationContainer theme={activeMode}>
+      <NavigationContainer theme={activeMode} ref={navigationRef}>
         {props.children}
       </NavigationContainer>
     ),
     (props) => <StacksProvider spacing={4}>{props.children}</StacksProvider>,
-    (props) => <ThemeProvider theme={theme} /* useDark={true} */>{props.children}</ThemeProvider>,
+    // TODO dark mode
+    (props) => <ThemeProvider theme={theme} useDark={false}>{props.children}</ThemeProvider>,
   ]);
 
   return (
@@ -78,5 +84,10 @@ const App = () => {
     </RootProvider>
   );
 };
+
+LogBox.ignoreLogs([
+  'Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://fb.me/react-unsafe-component-lifecycles for details.',
+  'Warning: Legacy context API has been detected within a strict-mode tree.',
+]);
 
 registerRootComponent(App);

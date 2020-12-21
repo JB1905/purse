@@ -10,6 +10,7 @@ interface Props {
   readonly onSelect: any;
 }
 
+// TODO
 const IconPicker = ({ icons, selectedIcon, onSelect }: Props) => {
   const { colors } = useTheme();
 

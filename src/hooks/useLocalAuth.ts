@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as LocalAuthentication from 'expo-local-authentication';
-import { AsyncStorage } from 'react-native';
+// import { AsyncStorage } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { RootState } from '../reducers';

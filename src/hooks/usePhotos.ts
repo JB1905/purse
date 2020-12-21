@@ -3,16 +3,18 @@ import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 
 export const usePhotos = () => {
-  const [cameraRollPermission, setCameraRollPermission] = useState<
-    Permissions.PermissionStatus
-  >(undefined);
+  const [
+    cameraRollPermission,
+    setCameraRollPermission,
+  ] = useState<Permissions.PermissionStatus>(undefined);
 
-  const [cameraRollPermissionError, setCameraRollPermissionError] = useState<
-    string
-  >(undefined);
+  const [
+    cameraRollPermissionError,
+    setCameraRollPermissionError,
+  ] = useState<string>(undefined);
 
   const requestRollCameraPermission = async () => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
 
     if (status !== 'granted') {
       setCameraRollPermissionError('Wymagane pozwolenie na dostęp do aparatu');

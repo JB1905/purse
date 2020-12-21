@@ -9,7 +9,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
 import StatusBar from '../../components/StatusBar';
-import ErrorMessage from '../../components/ErrorMessage'; // lazy?
+import ErrorMessage from '../../components/ErrorMessage';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -31,9 +31,13 @@ const SignUp = ({ navigation }: LoggedOutProps<Route.SIGN_UP>) => {
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, setValue, getValues, errors } = useForm<
-    FormData
-  >();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    errors,
+  } = useForm<FormData>();
 
   useEffect(() => {
     register('name', { required: true });
@@ -132,7 +136,7 @@ const SignUp = ({ navigation }: LoggedOutProps<Route.SIGN_UP>) => {
               errorMessage={errors.confirm}
             />
 
-            {/* {error?.message && <ErrorMessage message={error.message} />} */}
+            {error?.message && <ErrorMessage message={error.message} />}
 
             <Button title="Sign Up" onPress={handleSubmit(onSubmit)} />
           </Stack>

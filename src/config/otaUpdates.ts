@@ -21,6 +21,6 @@ export const otaUpdates = async () => {
       ]);
     }
   } catch (err) {
-    console.log(err);
+    console.log(err); // TODO
   }
 };
