@@ -8,8 +8,7 @@ import Text from '../../components/Text';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
-import StatusBar from '../../components/StatusBar';
-// import ErrorMessage from '../../components/ErrorMessage';
+import ErrorMessage from '../../components/ErrorMessage';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -66,8 +65,6 @@ const ResetPassword = ({
 
   return (
     <Container full spaces keyboard>
-      <StatusBar isModal />
-
       <Box paddingX={4}>
         <Stack space={8}>
           <Stack space={2}>
@@ -86,7 +83,7 @@ const ResetPassword = ({
               errorMessage={errors.email}
             />
 
-            {/* {error?.message && <ErrorMessage message={error.message} />} */}
+            {error?.message && <ErrorMessage message={error.message} />}
 
             <Button
               title="Send Reset Message"

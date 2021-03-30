@@ -8,7 +8,6 @@ import Text from '../../components/Text';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
-import StatusBar from '../../components/StatusBar';
 import ErrorMessage from '../../components/ErrorMessage';
 
 import { useAuth } from '../../hooks/useAuth';
@@ -86,8 +85,6 @@ const SignUp = ({ navigation }: LoggedOutProps<Route.SIGN_UP>) => {
 
   return (
     <Container full spaces keyboard>
-      <StatusBar isModal />
-
       <Box paddingX={4}>
         <Stack space={8}>
           <Stack space={2}>
