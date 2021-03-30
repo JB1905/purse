@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { LogBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { registerRootComponent } from 'expo';
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { ReactReduxFirebaseProvider, ReactReduxFirebaseProviderProps } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
 import { AppearanceProvider } from 'react-native-appearance';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -12,14 +12,11 @@ import {
 } from '@react-navigation/native';
 import { ThemeProvider } from 'react-native-elements';
 import { StacksProvider } from '@mobily/stacks';
-import { enableScreens } from 'react-native-screens';
 import { composeWrappers } from 'react-compose-wrappers';
 import { PersistGate } from 'redux-persist/integration/react';
 import { useReduxDevToolsExtension } from '@react-navigation/devtools';
 
 import Layout from './screens';
-
-import RootModal from './components/RootModal';
 
 import { useUpdates } from './hooks/useUpdates';
 import { useAppearance } from './hooks/useAppearance';
@@ -30,14 +27,12 @@ import { theme } from './constants/theme';
 
 import { store, persistor } from './store';
 
-enableScreens();
-
-const rrfConfig = {
+const rrfConfig: ReactReduxFirebaseProviderProps['config'] = {
   userProfile: 'users',
   useFirestoreForProfile: true,
 };
 
-const rrfProps = {
+const rrfProps: ReactReduxFirebaseProviderProps = {
   firebase,
   config: rrfConfig,
   dispatch: store.dispatch,
@@ -47,7 +42,7 @@ const rrfProps = {
 const App = () => {
   useUpdates();
 
-  const { activeMode } = useAppearance();
+  const { activeMode, isDark } = useAppearance();
 
   const navigationRef = useRef<NavigationContainerRef>(null);
 
@@ -72,9 +67,8 @@ const App = () => {
       </NavigationContainer>
     ),
     (props) => <StacksProvider spacing={4}>{props.children}</StacksProvider>,
-    // TODO dark mode
     (props) => (
-      <ThemeProvider theme={theme} useDark={false}>
+      <ThemeProvider theme={theme} useDark={isDark}>
         {props.children}
       </ThemeProvider>
     ),
@@ -83,8 +77,6 @@ const App = () => {
   return (
     <RootProvider>
       <Layout />
-
-      <RootModal />
     </RootProvider>
   );
 };
