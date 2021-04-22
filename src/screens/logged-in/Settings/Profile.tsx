@@ -1,16 +1,15 @@
 import React, { useCallback } from 'react';
 import { Platform } from 'react-native';
-import { useSelector } from 'react-redux';
 import { Stack, Box } from '@mobily/stacks';
 
 import Container from '../../../components/Container';
 import Button from '../../../components/Button';
-import StatusBar from '../../../components/StatusBar';
 import ItemGroup from '../../../components/ItemGroup';
 import ProfileCard from '../../../components/ProfileCard';
 import AppInfo from '../../../components/AppInfo';
 
 import { useAuth } from '../../../hooks/useAuth';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 import { LoggedInProps } from '../../../types/Navigation';
 
@@ -32,7 +31,7 @@ const localSettings = [
 const Profile = ({ navigation }: LoggedInProps<Route.PROFILE>) => {
   const { logout } = useAuth();
 
-  const currentUser = useSelector((state) => state.firebase.profile);
+  const currentUser = useTypedSelector((state) => state.firebase.profile);
 
   const logoutFromAccount = useCallback(() => {
     if (Platform.OS === 'ios') {
@@ -44,8 +43,6 @@ const Profile = ({ navigation }: LoggedInProps<Route.PROFILE>) => {
 
   return (
     <Container scrollEnabled>
-      <StatusBar isModal />
-
       <Box paddingX={4} paddingY={8}>
         <Stack space={8}>
           {currentUser && (

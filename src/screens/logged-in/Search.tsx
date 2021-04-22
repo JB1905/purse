@@ -12,7 +12,7 @@ const Search = () => {
       <SearchBar
         value={query}
         placeholder="Search..."
-        onChangeText={(text) => setQuery(text)}
+        onChangeText={setQuery}
       />
 
       <FallbackScreen

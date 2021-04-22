@@ -1,43 +1,42 @@
-import React, {
-  useRef,
-  useLayoutEffect,
-  useEffect,
-  useState,
-  useCallback,
-} from 'react';
-import { ActionSheetIOS, findNodeHandle, Alert } from 'react-native';
-import { useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { useTheme } from '@react-navigation/native';
+import React, { useLayoutEffect, useState } from 'react';
+import { Alert } from 'react-native';
+import { Controller, useForm } from 'react-hook-form';
 import { useFirestoreConnect, useFirestore } from 'react-redux-firebase';
 import MapView from 'react-native-maps';
-import { Box } from '@mobily/stacks';
+import { Box, Stack } from '@mobily/stacks';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 import Container from '../../components/Container';
 import HeaderButton from '../../components/HeaderButton';
-import StatusBar from '../../components/StatusBar';
 import SectionBox from '../../components/SectionBox';
 import Loader from '../../components/Loader';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import FallbackScreen from '../../components/FallbackScreen';
 
-import { usePhotos } from '../../hooks/usePhotos';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 import type { MainProps } from '../../types/Navigation';
 
 import { Collection } from '../../enums/Collection';
 import { Route } from '../../enums/Route';
+import { AttachImage } from '../../components/AttachImage';
 
-type FormData = {
-  type: string;
-  value: string;
-  title: string;
-  category: string;
-  date: number;
-  coords: object;
-  images: any[];
-};
+const schema = z.object({
+  type: z.string().nonempty(),
+  value: z.string().nonempty(),
+  title: z.string().nonempty(),
+  category: z.string().nonempty(),
+  date: z.date(),
+  coords: z.object({
+    lat: z.number(),
+    lon: z.number(),
+  }),
+  images: z.any(),
+});
+
+type FormData = z.infer<typeof schema>;
 
 const FinanceManager = ({
   route,
@@ -47,21 +46,17 @@ const FinanceManager = ({
 
   const id = route.params?.id ?? '';
 
-  const { colors } = useTheme();
-
-  // TODO
-  const ref = useRef<any>();
-
   const [error, setError] = useState<Error>(); // TODO
   const [loading, setLoading] = useState(false);
 
-  const [openModal, setOpenModal] = useState(false);
-
   useFirestoreConnect([Collection.Categories]);
 
-  const categories = useSelector((state) => state.firestore.ordered.categories);
+  const categories = useTypedSelector(
+    (state) => state.firestore.ordered.categories
+  );
 
-  const { register, handleSubmit, reset, setValue, watch } = useForm<FormData>({
+  const { handleSubmit, control, reset } = useForm<FormData>({
+    resolver: zodResolver(schema),
     defaultValues: {
       type: route.params?.type ?? undefined,
       value: route.params?.value ?? '',
@@ -73,15 +68,7 @@ const FinanceManager = ({
     },
   });
 
-  useEffect(() => {
-    register('value', { required: true });
-    register('title', { required: true });
-    register('category', { required: true });
-  }, [register]);
-
-  const { getImageFromCameraRoll } = usePhotos();
-
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = (data: FormData) => {
     const createFinance = () => {
       if (error) setError(undefined);
 
@@ -158,7 +145,7 @@ const FinanceManager = ({
         />
       ),
       headerRight: () =>
-        categories.length > 0 && (
+        categories?.length > 0 && (
           <HeaderButton
             title="Save"
             iconName="save"
@@ -169,51 +156,44 @@ const FinanceManager = ({
     });
   }, [navigation, categories]);
 
-  const showImageSourcesList = useCallback(() => {
-    ActionSheetIOS.showActionSheetWithOptions(
-      {
-        options: ['Select image from camera roll', 'Take a photo', 'Cancel'],
-        cancelButtonIndex: 2,
-        tintColor: colors.primary,
-        anchor: findNodeHandle(ref.current),
-      },
-      (buttonIndex) => {
-        if (buttonIndex === 0) {
-          getImageFromCameraRoll();
-        } else if (buttonIndex === 1) {
-          // setOpenModal('camera');
-        }
-      }
-    );
-  }, []);
-
   return (
-    <Container keyboard scrollEnabled full>
-      <StatusBar isModal />
-
+    <Container keyboard scrollEnabled>
       <Box paddingY={8}>
-        {/* <Stack space={8}> */}
-        {categories.length > 0 ? (
-          <>
-            <Input
-              onChangeText={(text) => setValue('value', text)}
-              defaultValue={watch().value}
-              label="Amount"
-              placeholder="Amount"
-              keyboardType="number-pad"
-              flat
-            />
+        <Stack space={8}>
+          {categories ? (
+            categories.length > 0 ? (
+              <>
+                <Controller
+                  name="value"
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <Input
+                      onChangeText={onChange}
+                      defaultValue={value}
+                      label="Amount"
+                      placeholder="Amount"
+                      keyboardType="number-pad"
+                      flat
+                    />
+                  )}
+                />
 
-            <Input
-              onChangeText={(text) => setValue('title', text)}
-              defaultValue={watch().title}
-              label="Title"
-              placeholder="Title"
-              flat
-            />
+                <Controller
+                  name="title"
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <Input
+                      onChangeText={onChange}
+                      defaultValue={value}
+                      label="Title"
+                      placeholder="Title"
+                      flat
+                    />
+                  )}
+                />
 
-            <SectionBox title="Category">
-              {/* <Picker
+                <SectionBox title="Category">
+                  {/* <Picker
                   selectedValue={watch().category}
                   onValueChange={(value) => setValue('category', value)}
                   style={{
@@ -232,56 +212,45 @@ const FinanceManager = ({
                     />
                   ))}
                 </Picker> */}
-            </SectionBox>
+                </SectionBox>
 
-            <SectionBox title="Place">
-              <MapView
-                pitchEnabled={false}
-                rotateEnabled={false}
-                zoomEnabled={false}
-                scrollEnabled={false}
-                // onPress={() => setOpenModal('map')}
-                style={{ width: '100%', height: 240 }}
-                cacheEnabled
+                <SectionBox title="Place">
+                  {/* TODO MapPreview */}
+                  <MapView
+                    pitchEnabled={false}
+                    rotateEnabled={false}
+                    zoomEnabled={false}
+                    scrollEnabled={false}
+                    // onPress={() => setOpenModal('map')}
+                    style={{ width: '100%', height: 240 }}
+                    cacheEnabled
+                  >
+                    {/* <Marker coordinate={coords} /> */}
+                  </MapView>
+                </SectionBox>
+
+                <Box paddingX={4}>
+                  <AttachImage />
+                </Box>
+
+                {/* <Gallery /> */}
+              </>
+            ) : (
+              <FallbackScreen
+                title="No any categories"
+                message="Before add expense create new category"
               >
-                {/* <Marker coordinate={coords} /> */}
-              </MapView>
-            </SectionBox>
-
-            <Button
-              title="Add Image"
-              onPress={showImageSourcesList}
-              ref={ref}
-            />
-
-            {/* {getValues().images.map((image) => (
-              <Image
-                source={{ uri: image.uri }}
-                style={{ width: 100, height: 100 }}
-              />
-            ))} */}
-
-            {/* <Modal visible={!!openModal} presentationStyle="formSheet">
-              <Maps />
-            </Modal> */}
-
-            {/* <Modal visible={true} presentationStyle="formSheet">
-              <Camera />
-            </Modal> */}
-          </>
-        ) : (
-          <FallbackScreen
-            title="No any categories"
-            message="Before add expense create new category"
-          >
-            <Button
-              title="Add it here"
-              onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)}
-              type="clear"
-            />
-          </FallbackScreen>
-        )}
-        {/* </Stack> */}
+                <Button
+                  title="Add it here"
+                  // onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)}
+                  type="clear"
+                />
+              </FallbackScreen>
+            )
+          ) : (
+            <Loader />
+          )}
+        </Stack>
       </Box>
 
       {loading && <Loader />}

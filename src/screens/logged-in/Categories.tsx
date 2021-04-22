@@ -1,7 +1,6 @@
 import React from 'react';
 import { RefreshControl } from 'react-native';
 import { useFirestoreConnect } from 'react-redux-firebase';
-import { useSelector } from 'react-redux';
 
 import Loader from '../../components/Loader';
 import FallbackScreen from '../../components/FallbackScreen';
@@ -13,8 +12,13 @@ import type { LoggedInProps } from '../../types/Navigation';
 import { Collection } from '../../enums/Collection';
 import { Route } from '../../enums/Route';
 
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+
 const Categories = ({ navigation }: LoggedInProps<Route.CATEGORIES>) => {
-  const uid = useSelector((state) => state.firebase.auth.uid);
+  const { uid, categories } = useTypedSelector((state) => ({
+    uid: state.firebase.auth.uid,
+    categories: state.firestore.ordered.categories,
+  }));
 
   useFirestoreConnect([
     {
@@ -22,8 +26,6 @@ const Categories = ({ navigation }: LoggedInProps<Route.CATEGORIES>) => {
       where: ['user', '==', uid],
     },
   ]);
-
-  const categories = useSelector((state) => state.firestore.ordered.categories);
 
   if (!categories) {
     return <Loader />;

@@ -1,23 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, TextProps, ThemeContext } from 'react-native-elements';
+import { Text, TextProps } from 'react-native-elements';
+
+import { useElementsTheme } from '../hooks/useElementsTheme';
 
 interface Props extends TextProps {
   readonly message: string;
 }
 
-// TODO
 const ErrorMessage = ({ message }: Props) => {
-  const { theme } = useContext(ThemeContext); // TODO safe
+  const { theme } = useElementsTheme();
 
   return (
     <Text
-      style={{
-        paddingVertical: 6,
-        color: theme.colors.error,
-        textAlign: 'center',
-        fontWeight: '500',
-      }}
+      style={StyleSheet.flatten([
+        styles.message,
+        {
+          color: theme.colors.error,
+        },
+      ])}
     >
       {message}
     </Text>
@@ -26,9 +27,9 @@ const ErrorMessage = ({ message }: Props) => {
 
 const styles = StyleSheet.create({
   message: {
-    // paddingVertical: 6,
-    // textAlign: 'center',
-    // fontWeight: '500',
+    paddingVertical: 6,
+    textAlign: 'center',
+    fontWeight: '500',
   },
 });
 

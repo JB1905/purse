@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Alert } from 'react-native';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { Box, Stack } from '@mobily/stacks';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 import Container from '../../components/Container';
 import Text from '../../components/Text';
@@ -16,13 +18,15 @@ import type { LoggedOutProps } from '../../types/Navigation';
 
 import { Route } from '../../enums/Route';
 
-type FormData = {
-  name: string;
-  surname: string;
-  email: string;
-  password: string;
-  confirm: string;
-};
+const schema = z.object({
+  name: z.string().nonempty(),
+  surname: z.string().nonempty(),
+  email: z.string().email().nonempty(),
+  password: z.string().nonempty(),
+  confirm: z.string().nonempty(),
+});
+
+type FormData = z.infer<typeof schema>;
 
 const SignUp = ({ navigation }: LoggedOutProps<Route.SIGN_UP>) => {
   const { createAccount } = useAuth();
@@ -31,34 +35,12 @@ const SignUp = ({ navigation }: LoggedOutProps<Route.SIGN_UP>) => {
   const [loading, setLoading] = useState(false);
 
   const {
-    register,
+    control,
     handleSubmit,
-    setValue,
-    getValues,
-    errors,
-  } = useForm<FormData>();
-
-  useEffect(() => {
-    register('name', { required: true });
-    register('surname', { required: true });
-    register('email', { required: true });
-
-    register('password', {
-      required: true,
-      minLength: {
-        value: 6,
-        message: 'Password is too short (at least 6 char.)',
-      },
-    });
-
-    register('confirm', {
-      required: true,
-      minLength: {
-        value: 6,
-        message: 'Password is too short (at least 6 char.)',
-      },
-    });
-  }, [register]);
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit = async (data: FormData) => {
     const { name, surname, email, password } = data;
@@ -94,43 +76,73 @@ const SignUp = ({ navigation }: LoggedOutProps<Route.SIGN_UP>) => {
           </Stack>
 
           <Stack>
-            <Input
-              onChangeText={(text) => setValue('name', text)}
-              defaultValue={getValues().name}
-              placeholder="Name"
-              errorMessage={errors.name}
+            <Controller
+              name="name"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChangeText={onChange}
+                  defaultValue={value}
+                  placeholder="Name"
+                  errorMessage={errors.name}
+                />
+              )}
             />
 
-            <Input
-              onChangeText={(text) => setValue('surname', text)}
-              defaultValue={getValues().surname}
-              placeholder="Surname"
-              errorMessage={errors.surname}
+            <Controller
+              name="surname"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChangeText={onChange}
+                  defaultValue={value}
+                  placeholder="Surname"
+                  errorMessage={errors.surname}
+                />
+              )}
             />
 
-            <Input
-              onChangeText={(text) => setValue('email', text)}
-              defaultValue={getValues().email}
-              placeholder="E-mail"
-              autoCapitalize="none"
-              keyboardType="email-address"
-              errorMessage={errors.email}
+            <Controller
+              name="email"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChangeText={onChange}
+                  defaultValue={value}
+                  placeholder="E-mail"
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  errorMessage={errors.email}
+                />
+              )}
             />
 
-            <Input
-              onChangeText={(text) => setValue('password', text)}
-              defaultValue={getValues().password}
-              placeholder="Password"
-              secureTextEntry
-              errorMessage={errors.password}
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChangeText={onChange}
+                  defaultValue={value}
+                  placeholder="Password"
+                  secureTextEntry
+                  errorMessage={errors.password}
+                />
+              )}
             />
 
-            <Input
-              onChangeText={(text) => setValue('confirm', text)}
-              defaultValue={getValues().confirm}
-              placeholder="Confirm Password"
-              secureTextEntry
-              errorMessage={errors.confirm}
+            <Controller
+              name="confirm"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChangeText={onChange}
+                  defaultValue={value}
+                  placeholder="Confirm Password"
+                  secureTextEntry
+                  errorMessage={errors.confirm}
+                />
+              )}
             />
 
             {error?.message && <ErrorMessage message={error.message} />}

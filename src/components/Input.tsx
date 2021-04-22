@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
-import {
-  Input as BaseInput,
-  InputProps,
-  ThemeContext,
-} from 'react-native-elements';
+import { Input as BaseInput, InputProps } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
 import { FieldError } from 'react-hook-form';
 
 import Icon from './Icon';
+
+import { useElementsTheme } from '../hooks/useElementsTheme';
 
 interface Props extends Omit<InputProps, 'errorMessage'> {
   readonly flat?: boolean;
@@ -26,9 +24,7 @@ const Input = ({
 }: Props) => {
   const { colors } = useTheme();
 
-  const { theme } = useContext(ThemeContext); // TODO safe
-
-  // console.log(props);
+  const { theme } = useElementsTheme();
 
   return (
     <BaseInput

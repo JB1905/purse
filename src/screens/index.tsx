@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import AppLoading from 'expo-app-loading';
@@ -11,10 +10,12 @@ import type { AppParamList } from '../types/Navigation';
 
 import { Route } from '../enums/Route';
 
+import { useTypedSelector } from '../hooks/useTypedSelector';
+
 const NativeStack = createNativeStackNavigator<AppParamList>();
 
 const Layout = () => {
-  const auth = useSelector((state) => state.firebase.auth);
+  const auth = useTypedSelector((state) => state.firebase.auth);
 
   if (!isLoaded(auth)) {
     return <AppLoading autoHideSplash />;

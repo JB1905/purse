@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useTheme } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
 
 import HeaderButton from '../../components/HeaderButton';
 import Loader from '../../components/Loader';
@@ -22,6 +21,8 @@ import type { LoggedInProps } from '../../types/Navigation';
 
 import { Collection } from '../../enums/Collection';
 import { Route } from '../../enums/Route';
+
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 const TABS = ['Expenses List', 'Map'];
 
@@ -90,7 +91,7 @@ const Category = ({ route, navigation }: LoggedInProps<Route.CATEGORY>) => {
 
   useFirestoreConnect([Collection.Categories, Collection.Data]);
 
-  const data = useSelector((state) => state.firestore.ordered.data);
+  const data = useTypedSelector((state) => state.firestore.ordered.data);
 
   const [tab, setTab] = useState(0);
 

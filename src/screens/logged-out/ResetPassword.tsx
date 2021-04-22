@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Alert } from 'react-native';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { Box, Stack } from '@mobily/stacks';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 import Container from '../../components/Container';
 import Text from '../../components/Text';
@@ -16,9 +18,11 @@ import type { LoggedOutProps } from '../../types/Navigation';
 
 import { Route } from '../../enums/Route';
 
-type FormData = {
-  email: string;
-};
+const schema = z.object({
+  email: z.string().email().nonempty(),
+});
+
+type FormData = z.infer<typeof schema>;
 
 const ResetPassword = ({
   navigation,
@@ -29,16 +33,12 @@ const ResetPassword = ({
   const [loading, setLoading] = useState(false);
 
   const {
-    register,
+    control,
     handleSubmit,
-    setValue,
-    getValues,
-    errors,
-  } = useForm<FormData>();
-
-  useEffect(() => {
-    register('email', { required: true });
-  }, [register]);
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit = async (data: FormData) => {
     const { email } = data;
@@ -74,13 +74,19 @@ const ResetPassword = ({
           </Stack>
 
           <Stack>
-            <Input
-              onChangeText={(text) => setValue('email', text)}
-              defaultValue={getValues().email}
-              placeholder="Your account email"
-              autoCapitalize="none"
-              keyboardType="email-address"
-              errorMessage={errors.email}
+            <Controller
+              name="email"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChangeText={onChange}
+                  defaultValue={value}
+                  placeholder="Your account email"
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  errorMessage={errors.email}
+                />
+              )}
             />
 
             {error?.message && <ErrorMessage message={error.message} />}

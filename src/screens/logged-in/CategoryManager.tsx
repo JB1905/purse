@@ -1,17 +1,14 @@
-import React, {
-  useState,
-  useLayoutEffect,
-  useEffect,
-} from 'react';
+import React, { useState, useLayoutEffect, useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useFirestore } from 'react-redux-firebase';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { Stack, Box } from '@mobily/stacks';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 import Container from '../../components/Container';
 import HeaderButton from '../../components/HeaderButton';
 import SegmentedControl from '../../components/SegmentedControl';
-import StatusBar from '../../components/StatusBar';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
 import SectionBox from '../../components/SectionBox';
@@ -26,11 +23,13 @@ import type { MainProps } from '../../types/Navigation';
 import { Collection } from '../../enums/Collection';
 import { Route } from '../../enums/Route';
 
-type FormData = {
-  name: string;
-  color: string;
-  icon: string;
-};
+const schema = z.object({
+  name: z.string().nonempty(),
+  color: z.string().nonempty(),
+  icon: z.string().nonempty(),
+});
+
+type FormData = z.infer<typeof schema>;
 
 enum Tabs {
   Colour,
@@ -57,22 +56,16 @@ const CategoryManager = ({
   };
 
   const {
-    register,
     handleSubmit,
-    setValue,
-    getValues,
-    watch,
-    errors,
+    control,
+    formState: { errors },
     reset,
-  } = useForm<FormData>({ defaultValues });
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues,
+  });
 
-  useEffect(() => {
-    register('name', { required: true });
-    register('color', { required: true });
-    register('icon', { required: true });
-  }, [register]);
-
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = (data: FormData) => {
     if (error) setError(''); // TODO
 
     const createCategory = async () => {
@@ -157,21 +150,26 @@ const CategoryManager = ({
         />
       ),
     });
-  }, [navigation, errors]);
+  }, [navigation]);
 
   return (
     <Container keyboard scrollEnabled>
-      <StatusBar isModal />
-
       <Box paddingY={8}>
         {/* <Stack space={8}> */}
-        <Input
-          onChangeText={(text) => setValue('name', text)}
-          defaultValue={getValues().name}
-          label="Category name"
-          placeholder="Category name e.g: Food"
-          errorMessage={errors.name}
-          flat
+
+        <Controller
+          name="name"
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <Input
+              onChangeText={onChange}
+              defaultValue={value}
+              label="Category name"
+              placeholder="Category name e.g: Food"
+              errorMessage={errors.name}
+              flat
+            />
+          )}
         />
 
         <SegmentedControl
@@ -182,7 +180,8 @@ const CategoryManager = ({
         />
 
         <SectionBox>
-          {tab === Tabs.Colour ? (
+          {/* TODO */}
+          {/* {tab === Tabs.Colour ? (
             <ColorPicker
               onSelect={(color) => setValue('color', color)}
               selectedColor={watch().color}
@@ -194,7 +193,7 @@ const CategoryManager = ({
               selectedIcon={watch().icon}
               icons={categoryIcons}
             />
-          )}
+          )} */}
         </SectionBox>
         {/* </Stack> */}
       </Box>

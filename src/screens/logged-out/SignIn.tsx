@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Image } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Box, Stack } from '@mobily/stacks';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 import Container from '../../components/Container';
 import Text from '../../components/Text';
@@ -19,10 +21,12 @@ import type { LoggedOutProps } from '../../types/Navigation';
 
 import { Route } from '../../enums/Route';
 
-type FormData = {
-  email: string;
-  password: string;
-};
+const schema = z.object({
+  email: z.string().email().nonempty(),
+  password: z.string().nonempty(),
+});
+
+type FormData = z.infer<typeof schema>;
 
 const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
   const { colors } = useTheme();
@@ -35,17 +39,12 @@ const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
   const [securePassword, setSecurePassword] = useState(true);
 
   const {
-    register,
+    control,
     handleSubmit,
-    setValue,
-    watch,
-    errors,
-  } = useForm<FormData>();
-
-  useEffect(() => {
-    register('email', { required: true });
-    register('password', { required: true });
-  }, [register]);
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit = async (data: FormData) => {
     const { email, password } = data;
@@ -81,33 +80,45 @@ const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
           </Stack>
 
           <Stack>
-            <Input
-              onChangeText={(text) => setValue('email', text)}
-              defaultValue={watch().email}
-              placeholder="E-mail"
-              autoCapitalize="none"
-              keyboardType="email-address"
-              errorMessage={errors.email}
+            <Controller
+              name="email"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChangeText={onChange}
+                  defaultValue={value}
+                  placeholder="E-mail"
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  errorMessage={errors.email}
+                />
+              )}
             />
 
-            <Input
-              onChangeText={(text) => setValue('password', text)}
-              defaultValue={watch().password}
-              placeholder="Password"
-              secureTextEntry={securePassword}
-              errorMessage={errors.password}
-              rightIcon={
-                <TouchableOpacity
-                  onPress={() => setSecurePassword(!securePassword)}
-                >
-                  <Icon
-                    name={securePassword ? 'visibility' : 'visibility-off'}
-                    containerStyle={{ opacity: 0.75 }}
-                    color={colors.text}
-                    size={26}
-                  />
-                </TouchableOpacity>
-              }
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChangeText={onChange}
+                  defaultValue={value}
+                  placeholder="Password"
+                  secureTextEntry={securePassword}
+                  errorMessage={errors.password}
+                  rightIcon={
+                    <TouchableOpacity
+                      onPress={() => setSecurePassword(!securePassword)}
+                    >
+                      <Icon
+                        name={securePassword ? 'visibility' : 'visibility-off'}
+                        containerStyle={{ opacity: 0.75 }}
+                        color={colors.text}
+                        size={26}
+                      />
+                    </TouchableOpacity>
+                  }
+                />
+              )}
             />
 
             {error?.message && <ErrorMessage message={error.message} />}

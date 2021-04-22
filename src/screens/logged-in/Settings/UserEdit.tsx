@@ -25,13 +25,13 @@ const UserEdit = () => {
     },
   });
 
-  useEffect(() => {
-    register('name', { required: true });
-    register('surname', { required: true });
-    register('currentPassword', { required: true });
-    register('newPassword', { required: true });
-    register('confirm', { required: true });
-  }, [register]);
+  // useEffect(() => {
+  //   register('name', { required: true });
+  //   register('surname', { required: true });
+  //   register('currentPassword', { required: true });
+  //   register('newPassword', { required: true });
+  //   register('confirm', { required: true });
+  // }, [register]);
 
   const remove = async () => {
     // await deleteUser(getCurrentUser()?.uid);

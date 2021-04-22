@@ -37,6 +37,8 @@ export const MainScreen = () => {
             iconName = 'list-box';
           } else if (route.name === Route.SEARCH) {
             iconName = 'search';
+          } else {
+            // iconName = "" // TODO
           }
 
           return <Icon name={iconName} color={color} size={26} />;
