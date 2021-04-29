@@ -1,0 +1,44 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: firebase
+    versions:
+    - 8.2.1
+    - 8.2.5
+    - 8.2.9
+    - 8.3.1
+  - dependency-name: "@react-native-community/datetimepicker"
+    versions:
+    - 3.0.8
+    - 3.0.9
+    - 3.4.3
+  - dependency-name: react-native-reanimated
+    versions:
+    - 1.13.2
+    - 2.0.1
+  - dependency-name: react-native-gesture-handler
+    versions:
+    - 1.10.3
+    - 1.9.0
+  - dependency-name: y18n
+    versions:
+    - 3.2.2
+  - dependency-name: react-native-web
+    versions:
+    - 0.14.10
+    - 0.14.11
+  - dependency-name: expo-camera
+    versions:
+    - 10.0.0
+  - dependency-name: native-color-picker
+    versions:
+    - 2.0.0-alpha.5
+  - dependency-name: react-native-tab-view
+    versions:
+    - 2.15.2
