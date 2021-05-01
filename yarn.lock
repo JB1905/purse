@@ -3799,10 +3799,10 @@
   resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.0.0-next.3.tgz#9266aa05c235191101e50d8ce92c4820d4f45fa9"
   integrity sha512-mrdC0mznJ+htL5EJQ21Jj1/4n7+MzVLWmGA8BueaGccMrIWekmjrH1HgOZ4tDnFO/rmhJ5V6zsXv8l8ICD1SGg==
 
-"@react-navigation/material-bottom-tabs@^6.0.0-next.1":
-  version "6.0.0-next.1"
-  resolved "https://registry.yarnpkg.com/@react-navigation/material-bottom-tabs/-/material-bottom-tabs-6.0.0-next.1.tgz#e02ae59ad7b0e64d9551dc45118e9f55c6c9ffae"
-  integrity sha512-LihnaxkrJRhsw77bp8OU5dpUkBjB8y/+k7UQ4Xa+GjSvadxYnw7oMLouJqbJwBNXAkHH7jldX+CvM3RDunZipg==
+"@react-navigation/material-bottom-tabs@^6.0.0-next.2":
+  version "6.0.0-next.2"
+  resolved "https://registry.yarnpkg.com/@react-navigation/material-bottom-tabs/-/material-bottom-tabs-6.0.0-next.2.tgz#310bc98251564fcb1d56c1ce79c9444c26bbdf88"
+  integrity sha512-NYdXIPKSjwCKWSxkxpfx78aqOdGGDnNl/tAShVn4KOS/es/RpOZ6zIU4Tdsb0eoPC5SiqD0M+GmAiU3khOT9Sw==
 
 "@react-navigation/material-top-tabs@^6.0.0-next.1":
   version "6.0.0-next.1"
