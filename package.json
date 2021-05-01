@@ -65,7 +65,7 @@
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.3",
     "react-redux-firebase": "^3.10.0",
-    "react-suspenser": "^1.1.1",
+    "react-suspenser": "^1.1.4",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
     "redux-firestore": "^0.15.0",
