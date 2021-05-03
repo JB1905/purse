@@ -45,6 +45,7 @@ const Input = ({
         containerStyle,
         flat
           ? {
+              // backgroundColor:'red', // TODO
               paddingLeft: 0,
               paddingRight: 0,
               // marginVertical: 10,
@@ -93,6 +94,7 @@ const Input = ({
               display: 'none',
             },
       ])}
+      errorStyle={flat ? { display: 'none' } : {}} // TODO
       // placeholderTextColor={colors.text}
       inputStyle={StyleSheet.flatten([
         inputStyle,

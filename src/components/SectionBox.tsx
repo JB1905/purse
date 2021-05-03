@@ -16,7 +16,7 @@ const SectionBox: React.FC<Props> = ({
 
   return (
     <View
-      style={{ marginTop: 10 }} // TODO
+    // style={{ marginTop: 10 }} // TODO
     >
       {title && (
         <Text

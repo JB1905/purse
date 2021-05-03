@@ -5,15 +5,15 @@ import SearchBar from '../../components/SearchBar';
 import FallbackScreen from '../../components/FallbackScreen';
 
 const Search = () => {
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
 
   return (
     <Container scrollEnabled>
-      <SearchBar
+      {/* <SearchBar
         value={query}
         placeholder="Search..."
         onChangeText={setQuery} // TODO
-      />
+      /> */}
 
       <FallbackScreen
         title="Search for data"

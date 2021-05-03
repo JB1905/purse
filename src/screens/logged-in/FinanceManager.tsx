@@ -161,97 +161,98 @@ const FinanceManager = ({
   return (
     <Container keyboard scrollEnabled>
       <Box paddingY={8}>
-        <Stack space={8}>
-          {categories ? (
-            categories.length > 0 ? (
-              <>
+        {/* TODO */}
+        {/* <Stack space={8}> */}
+        {categories ? (
+          categories.length > 0 ? (
+            <Stack space={6}>
+              <Controller
+                name="value"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    onChangeText={onChange}
+                    defaultValue={value}
+                    label="Amount"
+                    placeholder="Amount"
+                    keyboardType="number-pad"
+                    flat
+                  />
+                )}
+              />
+
+              <Controller
+                name="title"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    onChangeText={onChange}
+                    defaultValue={value}
+                    label="Title"
+                    placeholder="Title"
+                    flat
+                  />
+                )}
+              />
+
+              <SectionBox title="Category">
                 <Controller
-                  name="value"
+                  name="category"
                   control={control}
                   render={({ field: { onChange, value } }) => (
-                    <Input
-                      onChangeText={onChange}
-                      defaultValue={value}
-                      label="Amount"
-                      placeholder="Amount"
-                      keyboardType="number-pad"
-                      flat
-                    />
+                    <Picker
+                      selectedValue={value}
+                      onValueChange={onChange}
+                      // enabled={!id} // TODO
+                      // style={{
+                      //   maxWidth: 440,
+                      //   width: '100%',
+                      //   alignSelf: 'center',
+                      // }}
+                    >
+                      <Picker.Item label="" value="" />
+
+                      {categories.map((category) => (
+                        <Picker.Item
+                          label={category.name}
+                          value={category.id}
+                          key={category.id}
+                        />
+                      ))}
+                    </Picker>
                   )}
                 />
+              </SectionBox>
 
-                <Controller
-                  name="title"
-                  control={control}
-                  render={({ field: { onChange, value } }) => (
-                    <Input
-                      onChangeText={onChange}
-                      defaultValue={value}
-                      label="Title"
-                      placeholder="Title"
-                      flat
-                    />
-                  )}
+              <SectionBox title="Place">
+                <MapPreview
+                // onPress={() => setOpenModal('map')}
+                // coordinate={coords}
                 />
+              </SectionBox>
 
-                <SectionBox title="Category">
-                  <Controller
-                    name="category"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <Picker
-                        selectedValue={value}
-                        onValueChange={onChange}
-                        // enabled={!id} // TODO
-                        // style={{
-                        //   maxWidth: 440,
-                        //   width: '100%',
-                        //   alignSelf: 'center',
-                        // }}
-                      >
-                        <Picker.Item label="" value="" />
+              <Box paddingX={4}>
+                <AttachImage />
+              </Box>
 
-                        {categories.map((category) => (
-                          <Picker.Item
-                            label={category.name}
-                            value={category.id}
-                            key={category.id}
-                          />
-                        ))}
-                      </Picker>
-                    )}
-                  />
-                </SectionBox>
-
-                <SectionBox title="Place">
-                  <MapPreview
-                  // onPress={() => setOpenModal('map')}
-                  // coordinate={coords}
-                  />
-                </SectionBox>
-
-                <Box paddingX={4}>
-                  <AttachImage />
-                </Box>
-
-                {/* <Gallery /> */}
-              </>
-            ) : (
-              <FallbackScreen
-                title="No any categories"
-                message="Before add expense create new category"
-              >
-                <Button
-                  title="Add it here"
-                  // onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)} // TODO
-                  type="clear"
-                />
-              </FallbackScreen>
-            )
+              {/* <Gallery /> */}
+            </Stack>
           ) : (
-            <Loader />
-          )}
-        </Stack>
+            <FallbackScreen
+              title="No any categories"
+              message="Before add expense create new category"
+            >
+              <Button
+                title="Add it here"
+                // onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)} // TODO
+                type="clear"
+              />
+            </FallbackScreen>
+          )
+        ) : (
+          <Loader />
+        )}
+        {/* </Stack> */}
       </Box>
 
       {loading && <Loader />}

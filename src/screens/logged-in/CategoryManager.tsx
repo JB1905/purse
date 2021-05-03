@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect } from 'react';
 import { Alert } from 'react-native';
 import { useFirestore } from 'react-redux-firebase';
 import { Controller, useForm } from 'react-hook-form';
-import { Box } from '@mobily/stacks';
+import { Box, Stack } from '@mobily/stacks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
@@ -163,55 +163,59 @@ const CategoryManager = ({
   return (
     <Container keyboard scrollEnabled>
       <Box paddingY={8}>
-        <Controller
-          name="name"
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <Input
-              onChangeText={onChange}
-              defaultValue={value}
-              label="Category name"
-              placeholder="Category name e.g: Food"
-              errorMessage={errors.name}
-              flat
+        <Stack space={6}>
+          <Controller
+            name="name"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Input
+                onChangeText={onChange}
+                defaultValue={value}
+                label="Category name"
+                placeholder="Category name e.g: Food"
+                errorMessage={errors.name}
+                flat
+              />
+            )}
+          />
+
+          <Stack space={2}>
+            <SegmentedControl
+              values={['Colour', 'Glyph']}
+              selectedIndex={tab}
+              onChange={(e) => setTab(e.nativeEvent.selectedSegmentIndex)}
             />
-          )}
-        />
 
-        <SegmentedControl
-          values={['Colour', 'Glyph']}
-          selectedIndex={tab}
-          onChange={(e) => setTab(e.nativeEvent.selectedSegmentIndex)}
-        />
-
-        <SectionBox>
-          {tab === Tabs.Colour ? (
-            <Controller
-              name="color"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <ColorPicker
-                  onSelect={onChange}
-                  selectedColor={value}
-                  colors={categoryColors}
+            <SectionBox>
+              {tab === Tabs.Colour ? (
+                <Controller
+                  name="color"
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <ColorPicker
+                      onSelect={onChange}
+                      selectedColor={value}
+                      colors={categoryColors}
+                    />
+                  )}
+                />
+              ) : (
+                <Controller
+                  name="icon"
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <IconPicker
+                      onSelect={onChange}
+                      selectedIcon={value}
+                      icons={categoryIcons}
+                      color={watch().color}
+                    />
+                  )}
                 />
               )}
-            />
-          ) : (
-            <Controller
-              name="icon"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <IconPicker
-                  onSelect={onChange}
-                  selectedIcon={value}
-                  icons={categoryIcons}
-                  color={watch().color}
-                />
-              )}
-            />
-          )}
-        </SectionBox>
+            </SectionBox>
+          </Stack>
+        </Stack>
       </Box>
 
       {loading && <Loader />}
