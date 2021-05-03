@@ -136,26 +136,28 @@ const FinanceManager = ({
   };
 
   useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: `${id ? 'Edit' : 'Create'} Finance`,
-      headerLeft: () => (
-        <HeaderButton
-          title="Cancel"
-          iconName="close"
-          onPress={navigation.goBack}
-          spaces
-        />
-      ),
-      headerRight: () =>
-        categories?.length > 0 && (
+    setTimeout(() => {
+      navigation.setOptions({
+        headerTitle: `${id ? 'Edit' : 'Create'} Finance`,
+        headerLeft: () => (
           <HeaderButton
-            title="Save"
-            iconName="save"
-            onPress={handleSubmit(onSubmit)}
+            title="Cancel"
+            iconName="close"
+            onPress={navigation.goBack}
             spaces
           />
         ),
-    });
+        headerRight: () =>
+          categories?.length > 0 && (
+            <HeaderButton
+              title="Save"
+              iconName="save"
+              onPress={handleSubmit(onSubmit)}
+              spaces
+            />
+          ),
+      });
+    }, 100);
   }, [navigation, categories]);
 
   return (

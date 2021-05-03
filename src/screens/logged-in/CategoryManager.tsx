@@ -139,25 +139,27 @@ const CategoryManager = ({
   };
 
   useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: `${id ? 'Edit' : 'Create'} Category`,
-      headerLeft: () => (
-        <HeaderButton
-          title="Cancel"
-          iconName="close"
-          onPress={navigation.goBack}
-          spaces
-        />
-      ),
-      headerRight: () => (
-        <HeaderButton
-          title="Save"
-          iconName="save"
-          onPress={handleSubmit(onSubmit)}
-          spaces
-        />
-      ),
-    });
+    setTimeout(() => {
+      navigation.setOptions({
+        headerTitle: `${id ? 'Edit' : 'Create'} Category`,
+        headerLeft: () => (
+          <HeaderButton
+            title="Cancel"
+            iconName="close"
+            onPress={navigation.goBack}
+            spaces
+          />
+        ),
+        headerRight: () => (
+          <HeaderButton
+            title="Save"
+            iconName="save"
+            onPress={handleSubmit(onSubmit)}
+            spaces
+          />
+        ),
+      });
+    }, 100);
   }, [navigation]);
 
   return (
