@@ -64,7 +64,7 @@ const Category = ({ route, navigation }: LoggedInProps<Route.CATEGORY>) => {
         destructiveButtonIndex: 2,
         cancelButtonIndex: 3,
         tintColor: colors.primary,
-        anchor: findNodeHandle(ref.current),
+        anchor: findNodeHandle(ref.current) as number,
       },
       (buttonIndex) => {
         if (buttonIndex === 0) {
