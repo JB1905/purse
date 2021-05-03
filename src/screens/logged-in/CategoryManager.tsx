@@ -66,8 +66,6 @@ const CategoryManager = ({
     defaultValues,
   });
 
-  console.log(defaultValues);
-
   const onSubmit = (data: FormData) => {
     if (error) setError(''); // TODO
 
