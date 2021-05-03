@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { Alert } from 'react-native';
+import { Picker } from '@react-native-community/picker';
 import { Controller, useForm } from 'react-hook-form';
 import { useFirestoreConnect, useFirestore } from 'react-redux-firebase';
 import MapView from 'react-native-maps';
@@ -14,6 +15,8 @@ import Loader from '../../components/Loader';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import FallbackScreen from '../../components/FallbackScreen';
+import { AttachImage } from '../../components/AttachImage';
+import { MapPreview } from '../../components/MapPreview';
 
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
@@ -21,7 +24,6 @@ import type { MainProps } from '../../types/Navigation';
 
 import { Collection } from '../../enums/Collection';
 import { Route } from '../../enums/Route';
-import { AttachImage } from '../../components/AttachImage';
 
 const schema = z.object({
   type: z.string().nonempty(),
@@ -33,7 +35,7 @@ const schema = z.object({
     lat: z.number(),
     lon: z.number(),
   }),
-  images: z.any(),
+  images: z.any(), // TODO
 });
 
 type FormData = z.infer<typeof schema>;
@@ -193,40 +195,39 @@ const FinanceManager = ({
                 />
 
                 <SectionBox title="Category">
-                  {/* <Picker
-                  selectedValue={watch().category}
-                  onValueChange={(value) => setValue('category', value)}
-                  style={{
-                    maxWidth: 440,
-                    width: '100%',
-                    alignSelf: 'center',
-                  }}
-                >
-                  <Picker.Item label="" value="" />
+                  <Controller
+                    name="category"
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <Picker
+                        selectedValue={value}
+                        onValueChange={onChange}
+                        // enabled={!id} // TODO
+                        // style={{
+                        //   maxWidth: 440,
+                        //   width: '100%',
+                        //   alignSelf: 'center',
+                        // }}
+                      >
+                        <Picker.Item label="" value="" />
 
-                  {categories.map((category) => (
-                    <Picker.Item
-                      label={category.name}
-                      value={category.id}
-                      key={category.id}
-                    />
-                  ))}
-                </Picker> */}
+                        {categories.map((category) => (
+                          <Picker.Item
+                            label={category.name}
+                            value={category.id}
+                            key={category.id}
+                          />
+                        ))}
+                      </Picker>
+                    )}
+                  />
                 </SectionBox>
 
                 <SectionBox title="Place">
-                  {/* TODO MapPreview */}
-                  <MapView
-                    pitchEnabled={false}
-                    rotateEnabled={false}
-                    zoomEnabled={false}
-                    scrollEnabled={false}
-                    // onPress={() => setOpenModal('map')}
-                    style={{ width: '100%', height: 240 }}
-                    cacheEnabled
-                  >
-                    {/* <Marker coordinate={coords} /> */}
-                  </MapView>
+                  <MapPreview
+                  // onPress={() => setOpenModal('map')}
+                  // coordinate={coords}
+                  />
                 </SectionBox>
 
                 <Box paddingX={4}>
@@ -242,7 +243,7 @@ const FinanceManager = ({
               >
                 <Button
                   title="Add it here"
-                  // onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)}
+                  // onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)} // TODO
                   type="clear"
                 />
               </FallbackScreen>

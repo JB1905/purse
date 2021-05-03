@@ -15,6 +15,7 @@ export const RadioListItem = ({ title, checked }: Props) => {
 
   return (
     <ListItem
+      // TODO
       // key={button}
       // onPress={() => dispatch({ type: SET_THEME, payload: button })}
       // bottomDivider={index !== APPEARANCE_MODES.length}

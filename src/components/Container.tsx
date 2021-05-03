@@ -38,6 +38,7 @@ const Container: React.FC<Props> = ({
   </KeyboardAvoidingView>
 );
 
+// TODO
 const styles = StyleSheet.create({
   keyboard: {
     flex: 1,

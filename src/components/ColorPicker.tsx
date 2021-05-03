@@ -7,7 +7,7 @@ const ColorPicker = (props: Props) => (
   <NativeColorPicker
     {...props}
     sort
-    gradient
+    // gradient
     shadow
     itemSize={46}
     markerType="border"

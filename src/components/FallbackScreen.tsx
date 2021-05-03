@@ -1,36 +1,27 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
+import { Stack } from '@mobily/stacks';
 
 interface Props {
   readonly title?: string;
   readonly message?: string;
 }
 
-// TODO
 const FallbackScreen: React.FC<Props> = ({ title, message, children }) => {
   const { colors } = useTheme();
 
   return (
-    <View
-      style={{
-        flex: 1,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <Stack space={1} style={styles.wrapper}>
       {title && (
         <Text
-          style={{
-            fontSize: 22,
-            fontWeight: '500',
-            textAlign: 'center',
-            lineHeight: 30,
-            marginBottom: 8,
-            color: colors.text,
-          }}
+          style={StyleSheet.flatten([
+            {
+              color: colors.text,
+            },
+            styles.title,
+          ])}
         >
           {title}
         </Text>
@@ -39,20 +30,19 @@ const FallbackScreen: React.FC<Props> = ({ title, message, children }) => {
       {message && (
         <Text
           h3
-          h3Style={{
-            fontSize: 16,
-            textAlign: 'center',
-            opacity: 0.5,
-            lineHeight: 24,
-            color: colors.text,
-          }}
+          h3Style={StyleSheet.flatten([
+            {
+              color: colors.text,
+            },
+            styles.message,
+          ])}
         >
           {message}
         </Text>
       )}
 
       {children}
-    </View>
+    </Stack>
   );
 };
 
@@ -65,10 +55,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: '500',
+    fontWeight: '700',
     textAlign: 'center',
     lineHeight: 30,
-    marginBottom: 8,
   },
   message: {
     fontSize: 16,

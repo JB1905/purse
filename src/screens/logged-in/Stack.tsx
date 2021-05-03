@@ -83,7 +83,7 @@ export const FinancesScreen = () => (
 export const AnalyticsScreen = () => (
   <NativeStack.Navigator>
     <NativeStack.Screen
-      name={Route.ANALYTICS}
+      name={Route.ANALYTICS} // TODO
       component={Analytics}
       options={({ navigation }) => ({
         headerLargeTitle: true,
@@ -102,7 +102,7 @@ export const CategoriesScreen = () => (
 export const SearchScreen = () => (
   <NativeStack.Navigator>
     <NativeStack.Screen
-      name={Route.SEARCH}
+      name={Route.SEARCH} // TODO
       component={Search}
       options={({ navigation }) => ({
         headerLargeTitle: true,

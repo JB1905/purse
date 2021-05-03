@@ -2,13 +2,13 @@ import { useTheme } from '@react-navigation/native';
 import React, { useCallback, useRef } from 'react';
 import { ActionSheetIOS, findNodeHandle, Button } from 'react-native';
 
-import { useCamera } from '../hooks/useCamera';
 import { usePhotos } from '../hooks/usePhotos';
+import { useCamera } from '../hooks/useCamera';
 
 export const AttachImage = () => {
   const { colors } = useTheme();
 
-  const ref = useRef<number>(null);
+  const ref = useRef(null);
 
   const { handleCameraRoll } = usePhotos();
   const { handleCamera } = useCamera();
@@ -19,7 +19,7 @@ export const AttachImage = () => {
         options: ['Select image from camera roll', 'Take a photo', 'Cancel'],
         cancelButtonIndex: 2,
         tintColor: colors.primary,
-        anchor: findNodeHandle(ref.current),
+        anchor: findNodeHandle(ref.current) as number,
       },
       (buttonIndex) => {
         if (buttonIndex === 0) {
@@ -31,11 +31,5 @@ export const AttachImage = () => {
     );
   }, []);
 
-  return (
-    <Button
-      title="Add Image"
-      onPress={showImageSourcesList}
-      // ref={ref}
-    />
-  );
+  return <Button title="Add Image" onPress={showImageSourcesList} ref={ref} />;
 };

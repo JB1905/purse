@@ -1,4 +1,4 @@
-export const icons = {
+export const systemIcons = {
   'add-circle': { ios: 'ios-add-circle', android: 'add-circle' },
   save: { ios: 'ios-done', android: 'save' },
   close: { ios: 'ios-close', android: 'cancel' },
@@ -20,7 +20,7 @@ export const categoryIcons = {
   bus: { ios: 'ios-bus', android: 'directions-bus' },
   airplane: { ios: 'ios-airplane', android: 'flight' },
   basketball: { ios: 'ios-basketball', android: 'sports-basketball' },
-  appstore: { ios: 'ios-appstore', android: 'apps' }, // TODO android change icon
+  appstore: { ios: 'ios-logo-apple-appstore', android: 'apps' }, // TODO android change icon
   beer: { ios: 'ios-beer', android: 'local-drink' },
   bed: { ios: 'ios-bed', android: '' },
   body: { ios: 'ios-body', android: 'king-bed' },
@@ -55,5 +55,5 @@ export const categoryIcons = {
   'ice-cream': { ios: 'ios-ice-cream', android: '' },
   hammer: { ios: 'ios-hammer', android: '' },
   images: { ios: 'ios-images', android: 'image' }, // TODO android change icon
-  paper: { ios: 'ios-paper', android: '' },
+  paper: { ios: 'ios-newspaper', android: '' },
 };

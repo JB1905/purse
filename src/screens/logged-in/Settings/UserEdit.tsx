@@ -15,23 +15,23 @@ type FormData = {
   confirm: string;
 };
 
+const schema = z.object({
+  name: z.string(),
+  surname: z.string(),
+  currentPassword: z.string(),
+  newPassword: z.string(),
+  confirm: z.string(),
+});
+
 const UserEdit = () => {
   const [error, setError] = useState<string | null>(null);
 
-  const { register, setValue, getValues } = useForm<FormData>({
+  const { setValue, getValues } = useForm<FormData>({
     defaultValues: {
       // name: data?.name ?? '',
       // surname: data?.surname ?? '',
     },
   });
-
-  // useEffect(() => {
-  //   register('name', { required: true });
-  //   register('surname', { required: true });
-  //   register('currentPassword', { required: true });
-  //   register('newPassword', { required: true });
-  //   register('confirm', { required: true });
-  // }, [register]);
 
   const remove = async () => {
     // await deleteUser(getCurrentUser()?.uid);

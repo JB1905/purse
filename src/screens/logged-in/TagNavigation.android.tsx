@@ -27,7 +27,7 @@ export const MainScreen = () => {
       barStyle={{ backgroundColor: colors.background }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
-          let iconName: string;
+          let iconName = '';
 
           if (route.name === Route.FINANCES) {
             iconName = 'wallet';
@@ -37,8 +37,6 @@ export const MainScreen = () => {
             iconName = 'list-box';
           } else if (route.name === Route.SEARCH) {
             iconName = 'search';
-          } else {
-            // iconName = "" // TODO
           }
 
           return <Icon name={iconName} color={color} size={26} />;

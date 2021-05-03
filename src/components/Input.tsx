@@ -81,7 +81,7 @@ const Input = ({
         flat
           ? {
               textTransform: 'uppercase',
-              fontWeight: '500',
+              fontWeight: '400',
               fontSize: 14,
               color: colors.text,
               opacity: 0.5,

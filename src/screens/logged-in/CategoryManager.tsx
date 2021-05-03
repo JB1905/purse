@@ -1,8 +1,8 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { Alert } from 'react-native';
 import { useFirestore } from 'react-redux-firebase';
 import { Controller, useForm } from 'react-hook-form';
-import { Stack, Box } from '@mobily/stacks';
+import { Box } from '@mobily/stacks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
@@ -12,8 +12,8 @@ import SegmentedControl from '../../components/SegmentedControl';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
 import SectionBox from '../../components/SectionBox';
+import ColorPicker from '../../components/ColorPicker';
 import IconPicker from '../../components/IconPicker';
-import ColorPicker from '../../components/IconPicker';
 
 import { colors as categoryColors } from '../../constants/colors';
 import { categoryIcons } from '../../constants/icons';
@@ -60,10 +60,13 @@ const CategoryManager = ({
     control,
     formState: { errors },
     reset,
+    watch,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues,
   });
+
+  console.log(defaultValues);
 
   const onSubmit = (data: FormData) => {
     if (error) setError(''); // TODO
@@ -113,6 +116,13 @@ const CategoryManager = ({
       setLoading(false);
     };
 
+    // // TODO
+    // if (id) {
+    //   updateCategory()
+    // }else {
+    //   createCategory()
+    // }
+
     Alert.alert(
       'Do you want to save this category?',
       `Category ${data.name} will be ${id ? 'updated' : 'added'}`,
@@ -155,8 +165,6 @@ const CategoryManager = ({
   return (
     <Container keyboard scrollEnabled>
       <Box paddingY={8}>
-        {/* <Stack space={8}> */}
-
         <Controller
           name="name"
           control={control}
@@ -174,28 +182,38 @@ const CategoryManager = ({
 
         <SegmentedControl
           values={['Colour', 'Glyph']}
-          // values={Object.keys(Tabs)}
           selectedIndex={tab}
           onChange={(e) => setTab(e.nativeEvent.selectedSegmentIndex)}
         />
 
         <SectionBox>
-          {/* TODO */}
-          {/* {tab === Tabs.Colour ? (
-            <ColorPicker
-              onSelect={(color) => setValue('color', color)}
-              selectedColor={watch().color}
-              colors={categoryColors}
+          {tab === Tabs.Colour ? (
+            <Controller
+              name="color"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <ColorPicker
+                  onSelect={onChange}
+                  selectedColor={value}
+                  colors={categoryColors}
+                />
+              )}
             />
           ) : (
-            <IconPicker
-              onSelect={(icon) => setValue('icon', icon)}
-              selectedIcon={watch().icon}
-              icons={categoryIcons}
+            <Controller
+              name="icon"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <IconPicker
+                  onSelect={onChange}
+                  selectedIcon={value}
+                  icons={categoryIcons}
+                  color={watch().color}
+                />
+              )}
             />
-          )} */}
+          )}
         </SectionBox>
-        {/* </Stack> */}
       </Box>
 
       {loading && <Loader />}

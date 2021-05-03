@@ -2,7 +2,7 @@ import * as Facebook from 'expo-facebook';
 
 export const signInWithFacebookAsync = async () => {
   try {
-    await Facebook.initializeAsync(process.env.FACEBOOK_APP_ID);
+    await Facebook.initializeAsync(process.env.FACEBOOK_APP_ID as string);
 
     const fb = await Facebook.logInWithReadPermissionsAsync({
       permissions: ['public_profile'],

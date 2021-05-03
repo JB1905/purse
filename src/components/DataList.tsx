@@ -24,4 +24,5 @@ const DataList = ({ data }: any) => {
 };
 
 // const styles = StyleSheet.create({});
+
 export default DataList;

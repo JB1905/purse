@@ -8,10 +8,11 @@ interface Props {
   readonly icons: any;
   readonly selectedIcon: any;
   readonly onSelect: any;
+  readonly color: string;
 }
 
 // TODO
-const IconPicker = ({ icons, selectedIcon, onSelect }: Props) => {
+const IconPicker = ({ icons, selectedIcon, onSelect, color }: Props) => {
   const { colors } = useTheme();
 
   return (
@@ -24,13 +25,20 @@ const IconPicker = ({ icons, selectedIcon, onSelect }: Props) => {
         <TouchableOpacity
           style={StyleSheet.flatten([
             {
-              backgroundColor: colors.background, // colors.border
+              backgroundColor:
+                item[0] === selectedIcon
+                  ? color || colors.primary
+                  : colors.background, // colors.border
             },
             styles.item,
           ])}
           onPress={() => onSelect(item[0])}
         >
-          <Icon name={item[0]} color={colors.primary} size={30} />
+          <Icon
+            name={item[0]}
+            color={item[0] === selectedIcon ? '#fff' : color || colors.primary}
+            size={30}
+          />
         </TouchableOpacity>
       )}
     />

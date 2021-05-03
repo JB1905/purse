@@ -24,8 +24,12 @@ export const MainScreen = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        tabBarShowLabel: Platform.OS === 'ios',
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: 'gray',
+        headerShown: false, // TODO
         tabBarIcon: ({ color }) => {
-          let iconName: string;
+          let iconName = '';
 
           if (route.name === Route.FINANCES) {
             iconName = 'wallet';
@@ -35,18 +39,11 @@ export const MainScreen = () => {
             iconName = 'list-box';
           } else if (route.name === Route.SEARCH) {
             iconName = 'search';
-          } else {
-            // TODO
           }
 
           return <Icon name={iconName} color={color} size={26} />;
         },
       })}
-      tabBarOptions={{
-        showLabel: Platform.OS === 'ios',
-        activeTintColor: colors.primary,
-        inactiveTintColor: 'gray',
-      }}
     >
       <Tab.Screen name={Route.FINANCES} component={FinancesScreen} />
       <Tab.Screen name={Route.ANALYTICS} component={AnalyticsScreen} />

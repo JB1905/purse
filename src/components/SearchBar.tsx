@@ -33,7 +33,7 @@ const SearchBar = ({
         height: 40, // TODO only ios
       }}
       inputStyle={{ color: colors.text }}
-      cancelButtonProps={{ color: colors.primary }}
+      // cancelButtonProps={{ color: colors.primary }}
     />
   );
 };

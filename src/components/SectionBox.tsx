@@ -15,11 +15,14 @@ const SectionBox: React.FC<Props> = ({
   const { colors } = useTheme();
 
   return (
-    <View>
+    <View
+      style={{ marginTop: 10 }} // TODO
+    >
       {title && (
         <Text
           style={{
             color: colors.text,
+            ...styles.title, // TODO
             // TODO title
           }}
         >
@@ -30,6 +33,10 @@ const SectionBox: React.FC<Props> = ({
       <View
         style={{
           backgroundColor: colors.card,
+          borderTopColor: colors.border,
+          borderBottomColor: colors.border,
+          borderTopWidth: StyleSheet.hairlineWidth,
+          borderBottomWidth: StyleSheet.hairlineWidth,
           // TODO content
         }}
       >
@@ -43,10 +50,10 @@ const SectionBox: React.FC<Props> = ({
 const styles = StyleSheet.create({
   title: {
     textTransform: 'uppercase',
-    fontWeight: '500',
+    // fontWeight: '500',
     fontSize: 14,
     opacity: 0.5,
-    // marginVertical: 6,
+    marginBottom: 6,
     marginHorizontal: 20,
   },
   content: {

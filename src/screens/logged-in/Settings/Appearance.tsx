@@ -23,7 +23,9 @@ const Appearance = () => {
           <RadioListItem
             key={appearanceMode}
             title={appearanceMode}
-            onPress={() => dispatch({ type: SET_THEME, payload: appearanceMode })}
+            onPress={() =>
+              dispatch({ type: SET_THEME, payload: appearanceMode })
+            }
             bottomDivider={index !== APPEARANCE_MODES.length}
             checked={appearanceMode === activeAppearance}
           />

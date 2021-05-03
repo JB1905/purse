@@ -15,13 +15,14 @@ import { Route } from '../../enums/Route';
 
 const NativeStack = createNativeStackNavigator<LoggedOutParamList>();
 
-// TODO
+// TODO move to utils/constants
 const isIos = Platform.OS === 'ios';
 
 const CancelButton = () => {
   const navigation = useNavigation();
 
   return (
+    // TODO disable on loading e.g. resetting password
     <HeaderButton title="Cancel" iconName="close" onPress={navigation.goBack} />
   );
 };

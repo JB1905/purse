@@ -111,7 +111,7 @@ const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
                     >
                       <Icon
                         name={securePassword ? 'visibility' : 'visibility-off'}
-                        containerStyle={{ opacity: 0.75 }}
+                        containerStyle={styles.visibilityToggleButton}
                         color={colors.text}
                         size={26}
                       />
@@ -157,6 +157,9 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     marginRight: 5,
+  },
+  visibilityToggleButton: {
+    opacity: 0.75,
   },
 });
 
