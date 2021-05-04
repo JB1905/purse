@@ -74,7 +74,7 @@ const CategoryManager = ({
         setLoading(true);
 
         firestore.collection(Collection.Categories).add({
-          ...data, // user: getCurrentUser()?.uid
+          ...data, // user: getCurrentUser()?.uid // TODO
         });
 
         Alert.alert(`Added category: ${data.name}`, undefined, [
@@ -114,7 +114,7 @@ const CategoryManager = ({
       setLoading(false);
     };
 
-    // // TODO
+    // TODO
     // if (id) {
     //   updateCategory()
     // }else {
@@ -139,6 +139,7 @@ const CategoryManager = ({
   };
 
   useLayoutEffect(() => {
+    // TODO remove timeout workaround for iPad
     setTimeout(() => {
       navigation.setOptions({
         headerTitle: `${id ? 'Edit' : 'Create'} Category`,
@@ -171,10 +172,10 @@ const CategoryManager = ({
             control={control}
             render={({ field: { onChange, value } }) => (
               <Input
-                onChangeText={onChange}
-                defaultValue={value}
                 label="Category name"
                 placeholder="Category name e.g: Food"
+                onChangeText={onChange}
+                defaultValue={value}
                 errorMessage={errors.name}
                 flat
               />
@@ -182,13 +183,16 @@ const CategoryManager = ({
           />
 
           <Stack space={2}>
+            {/* TODO highlight not valid value (color or icon) - red text */}
             <SegmentedControl
+              // TODO move values to consts
               values={['Colour', 'Glyph']}
               selectedIndex={tab}
               onChange={(e) => setTab(e.nativeEvent.selectedSegmentIndex)}
             />
 
             <SectionBox>
+              {/* TODO fix selected value after tab change */}
               {tab === Tabs.Colour ? (
                 <Controller
                   name="color"
