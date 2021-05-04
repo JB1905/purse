@@ -27,7 +27,7 @@ const Container: React.FC<Props> = ({
       contentContainerStyle={StyleSheet.flatten([
         contentContainerStyle,
         {
-          height: '100%',
+          // minHeight: '100%', // TODO
           justifyContent: full ? 'center' : 'flex-start',
           maxWidth: full ? 500 : undefined,
           alignSelf: full ? 'center' : undefined,
