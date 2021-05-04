@@ -57,17 +57,24 @@ const FinanceManager = ({
     (state) => state.firestore.ordered.categories
   );
 
-  const { handleSubmit, control, reset } = useForm<FormData>({
+  const defaultValues = {
+    type: route.params?.type ?? undefined,
+    value: route.params?.value ?? '',
+    title: route.params?.title ?? '',
+    category: route.params?.category ?? '',
+    date: route.params?.date ?? Date.now(),
+    coords: route.params?.coords ?? {},
+    images: [],
+  };
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      type: route.params?.type ?? undefined,
-      value: route.params?.value ?? '',
-      title: route.params?.title ?? '',
-      category: route.params?.category ?? '',
-      date: route.params?.date ?? Date.now(),
-      coords: route.params?.coords ?? {},
-      images: [],
-    },
+    defaultValues,
   });
 
   const onSubmit = (data: FormData) => {
@@ -178,6 +185,7 @@ const FinanceManager = ({
                     label="Amount"
                     placeholder="Amount"
                     keyboardType="number-pad"
+                    errorMessage={errors.value}
                     flat
                   />
                 )}
@@ -192,6 +200,8 @@ const FinanceManager = ({
                     defaultValue={value}
                     label="Title"
                     placeholder="Title"
+                    // TODO errors[name]?
+                    errorMessage={errors.title}
                     flat
                   />
                 )}

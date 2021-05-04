@@ -8,6 +8,7 @@ interface Props {
   readonly items: any[];
 }
 
+// TODO connect with ToggleListItem and RadioListItem as compound components
 const ItemGroup = ({ title, items, style }: Props) => {
   const { colors } = useTheme();
 
@@ -15,6 +16,7 @@ const ItemGroup = ({ title, items, style }: Props) => {
 
   return (
     <View style={style}>
+      {/* TODO move to Label */}
       <Text
         style={StyleSheet.flatten([{ color: colors.text }, styles.groupTitle])}
       >
@@ -41,10 +43,13 @@ const ItemGroup = ({ title, items, style }: Props) => {
               </ListItem.Title>
             </ListItem.Content>
 
-            {/* <ListItem.Chevron /> */}
+            {/* TODO */}
+            <ListItem.Chevron />
           </ListItem>
         ))}
       </View>
+
+      {/* TODO add hint component */}
     </View>
   );
 };
@@ -54,7 +59,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginHorizontal: 15,
     textTransform: 'uppercase',
-    fontWeight: '500',
+    // fontWeight: '500',
     fontSize: 13,
     opacity: 0.5,
   },

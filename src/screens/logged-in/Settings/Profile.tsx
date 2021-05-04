@@ -56,9 +56,15 @@ const Profile = ({ navigation }: LoggedInProps<Route.PROFILE>) => {
 
           <ItemGroup title="Local Settings" items={localSettings} />
 
-          <Button title="Sign Out" onPress={logoutFromAccount} />
+          {/* TODO */}
+          <Button
+            title="Sign Out"
+            onPress={logoutFromAccount}
+            // style={{backgroundColor: '#fff'}} titleStyle={{color: 'red'}}
+          />
 
-          <AppInfo />
+          {/* TODO */}
+          {/* <AppInfo /> */}
         </Stack>
       </Box>
     </Container>

@@ -18,6 +18,7 @@ const SectionBox: React.FC<Props> = ({
     <View
     // style={{ marginTop: 10 }} // TODO
     >
+      {/* TODO move to Label */}
       {title && (
         <Text
           style={{

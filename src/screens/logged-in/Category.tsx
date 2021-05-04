@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useTheme } from '@react-navigation/native';
+import { Box } from '@mobily/stacks';
 
 import HeaderButton from '../../components/HeaderButton';
 import Loader from '../../components/Loader';
@@ -102,13 +103,18 @@ const Category = ({ route, navigation }: LoggedInProps<Route.CATEGORY>) => {
   // TODO Tabs Component
   const renderTabsView = () => (
     <>
-      <SegmentedControl
-        values={TABS}
-        selectedIndex={tab}
-        onChange={(e) => setTab(e.nativeEvent.selectedSegmentIndex)}
-      />
+      {/* TODO consider background blur absolute */}
+      {/* TODO bg color */}
+      <Box paddingY={1} style={{ backgroundColor: '#fff' }}>
+        <SegmentedControl
+          values={TABS}
+          selectedIndex={tab}
+          onChange={(e) => setTab(e.nativeEvent.selectedSegmentIndex)}
+        />
+      </Box>
 
-      <View style={styles.tabs}>
+      {/* TODO */}
+      <View style={{ ...styles.tabs, borderColor: colors.border }}>
         {tab === 0 ? (
           <DataList data={data} />
         ) : (

@@ -9,6 +9,8 @@ interface Props extends ListItemProps {
   readonly data: any;
 }
 
+const AVATAR_SIZE = 60;
+
 const ProfileCard = ({ data, style, ...props }: Props) => {
   const { colors } = useTheme();
 
@@ -29,7 +31,7 @@ const ProfileCard = ({ data, style, ...props }: Props) => {
       <Avatar
         title={formattedAvatarInitials}
         source={{ uri: gravatar.url(data.email, { protocol: 'https' }) }}
-        size="large"
+        size={AVATAR_SIZE}
         rounded
       />
 
@@ -53,7 +55,8 @@ const ProfileCard = ({ data, style, ...props }: Props) => {
         </ListItem.Subtitle>
       </ListItem.Content>
 
-      {/* <ListItem.Chevron /> */}
+      {/* TODO */}
+      <ListItem.Chevron />
     </ListItem>
   );
 };
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   titleStyle: {
-    fontWeight: '500',
+    fontWeight: '500', // TODO remove?
     fontSize: 22,
   },
   subtitleStyle: {

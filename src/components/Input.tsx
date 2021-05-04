@@ -41,6 +41,10 @@ const Input = ({
           />
         )
       }
+      // TODO
+      leftIconContainerStyle={
+        flat ? { overflow: 'hidden', height: 30 } : undefined
+      }
       containerStyle={StyleSheet.flatten([
         containerStyle,
         flat

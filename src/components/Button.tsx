@@ -3,6 +3,9 @@ import { StyleSheet, TouchableNativeFeedback } from 'react-native';
 import { Button as BaseButton, ButtonProps } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
 
+// TODO
+// type Variant = 'default' | 'danger' | 'cancel'
+
 const Button = ({
   type = 'solid',
   containerStyle,

@@ -4,6 +4,8 @@ import { Box } from '@mobily/stacks';
 import Container from '../../../components/Container';
 import { ToggleListItem } from '../../../components/ToggleListItem';
 
+// TODO useStorage hook
+
 const LocalAuthentication = () => {
   return (
     <Container>
