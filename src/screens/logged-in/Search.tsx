@@ -9,6 +9,7 @@ const Search = () => {
 
   return (
     <Container scrollEnabled>
+      {/* TODO use search box from react-native-screens (iOS) */}
       {/* <SearchBar
         value={query}
         placeholder="Search..."
