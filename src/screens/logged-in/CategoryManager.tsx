@@ -58,7 +58,7 @@ const CategoryManager = ({
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isDirty },
     reset,
     watch,
   } = useForm<FormData>({
@@ -159,9 +159,10 @@ const CategoryManager = ({
             spaces
           />
         ),
+        gestureEnabled: !isDirty, // TODO
       });
     }, 100);
-  }, [navigation]);
+  }, [navigation, isDirty]);
 
   return (
     <Container keyboard scrollEnabled>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import { Box, Stack } from '@mobily/stacks';
@@ -35,7 +35,7 @@ const ResetPassword = ({
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
@@ -62,6 +62,12 @@ const ResetPassword = ({
 
     setLoading(false);
   };
+
+  useEffect(() => {
+    navigation.setOptions({
+      gestureEnabled: !isDirty,
+    });
+  }, [isDirty]);
 
   return (
     <Container full spaces keyboard>

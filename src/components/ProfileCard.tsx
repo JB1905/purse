@@ -56,7 +56,9 @@ const ProfileCard = ({ data, style, ...props }: Props) => {
       </ListItem.Content>
 
       {/* TODO */}
-      <ListItem.Chevron />
+      <ListItem.Chevron
+      //  iconStyle={{opacity:0.5}} // TODO
+      />
     </ListItem>
   );
 };

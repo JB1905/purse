@@ -3,7 +3,8 @@ import { Platform } from 'react-native';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import { MainScreen } from './TabNavigation';
-import { CategoryManagerStack, FinanceManagerStack } from './Stack';
+import CategoryManager from './CategoryManager';
+import FinanceManager from './FinanceManager';
 import Settings from './Settings';
 
 import type { LoggedInParamList } from '../../types/Navigation';
@@ -15,23 +16,31 @@ const NativeStack = createNativeStackNavigator<LoggedInParamList>();
 export const LoggedIn = () => (
   <NativeStack.Navigator
     screenOptions={{
-      headerShown: false,
+      headerShown: true,
       stackPresentation: Platform.OS === 'ios' ? 'formSheet' : 'push',
-      gestureEnabled: false,
+      // gestureEnabled: false,
     }}
   >
-    <NativeStack.Screen name={Route.MAIN} component={MainScreen} />
+    <NativeStack.Screen
+      name={Route.MAIN}
+      component={MainScreen}
+      options={{ headerShown: false }}
+    />
 
     <NativeStack.Screen
       name={Route.CATEGORY_MANAGER}
-      component={CategoryManagerStack}
+      component={CategoryManager}
     />
 
     <NativeStack.Screen
       name={Route.FINANCE_MANAGER}
-      component={FinanceManagerStack}
+      component={FinanceManager}
     />
 
-    <NativeStack.Screen name={Route.SETTINGS} component={Settings} />
+    <NativeStack.Screen
+      name={Route.SETTINGS}
+      component={Settings}
+      options={{ headerShown: false }}
+    />
   </NativeStack.Navigator>
 );

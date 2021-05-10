@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Container from '../../components/Container';
 import SearchBar from '../../components/SearchBar';
@@ -6,6 +6,15 @@ import FallbackScreen from '../../components/FallbackScreen';
 
 const Search = () => {
   // const [query, setQuery] = useState('');
+
+  // useEffect(() => {
+  //   navigation.setOptions({
+  //     searchBar: {
+  //       onChangeText: (event) => console.log(event.nativeEvent.text),
+  //       // search bar options
+  //     }
+  //   })
+  // }, [navigation]);
 
   return (
     <Container scrollEnabled>

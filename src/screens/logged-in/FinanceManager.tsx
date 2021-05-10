@@ -3,7 +3,6 @@ import { Alert } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { Controller, useForm } from 'react-hook-form';
 import { useFirestoreConnect, useFirestore } from 'react-redux-firebase';
-import MapView from 'react-native-maps';
 import { Box, Stack } from '@mobily/stacks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -70,7 +69,7 @@ const FinanceManager = ({
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isDirty },
     reset,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -163,9 +162,11 @@ const FinanceManager = ({
               spaces
             />
           ),
+        // TODO
+        gestureEnabled: !isDirty,
       });
     }, 100);
-  }, [navigation, categories]);
+  }, [navigation, categories, isDirty]);
 
   return (
     <Container keyboard scrollEnabled>

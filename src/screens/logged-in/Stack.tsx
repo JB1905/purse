@@ -6,10 +6,8 @@ import HeaderButton from '../../components/HeaderButton';
 
 import Categories from './Categories';
 import Category from './Category';
-import CategoryManager from './CategoryManager';
 
 import Finances from './Finances';
-import FinanceManager from './FinanceManager';
 
 import Analytics from './Analytics';
 
@@ -105,31 +103,12 @@ export const SearchScreen = () => (
       name={Route.SEARCH} // TODO
       component={Search}
       options={({ navigation }) => ({
+        searchBar: {},
         headerLargeTitle: true,
         ...headerCustomOptions(navigation),
       })}
     />
 
     {shareRoutesBetweenTabs(NativeStack)}
-  </NativeStack.Navigator>
-);
-
-export const CategoryManagerStack = ({ route }) => (
-  <NativeStack.Navigator>
-    <NativeStack.Screen
-      name={Route.CATEGORY_MANAGER}
-      component={CategoryManager}
-      initialParams={route.params}
-    />
-  </NativeStack.Navigator>
-);
-
-export const FinanceManagerStack = ({ route }) => (
-  <NativeStack.Navigator>
-    <NativeStack.Screen
-      name={Route.FINANCE_MANAGER}
-      component={FinanceManager}
-      initialParams={route.params}
-    />
   </NativeStack.Navigator>
 );

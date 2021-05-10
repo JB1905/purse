@@ -105,7 +105,10 @@ const Category = ({ route, navigation }: LoggedInProps<Route.CATEGORY>) => {
     <>
       {/* TODO consider background blur absolute */}
       {/* TODO bg color */}
-      <Box paddingY={1} style={{ backgroundColor: '#fff' }}>
+      <Box
+        paddingY={1}
+        // style={{ backgroundColor: '#fff' }}
+      >
         <SegmentedControl
           values={TABS}
           selectedIndex={tab}

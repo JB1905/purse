@@ -27,37 +27,10 @@ const CancelButton = () => {
   );
 };
 
-const SignUpScreen = () => (
-  <NativeStack.Navigator>
-    <NativeStack.Screen
-      name={Route.SIGN_UP}
-      component={SignUp}
-      options={() => ({
-        title: '',
-        headerRight: () => isIos && <CancelButton />,
-      })}
-    />
-  </NativeStack.Navigator>
-);
-
-const ResetPasswordScreen = () => (
-  <NativeStack.Navigator>
-    <NativeStack.Screen
-      name={Route.RESET_PASSWORD}
-      component={ResetPassword}
-      options={() => ({
-        title: '',
-        headerRight: () => isIos && <CancelButton />,
-      })}
-    />
-  </NativeStack.Navigator>
-);
-
 export const LoggedOut = () => (
   <NativeStack.Navigator
     initialRouteName={Route.SIGN_IN}
     screenOptions={{
-      gestureEnabled: false,
       stackPresentation: isIos ? 'formSheet' : 'push',
     }}
   >
@@ -69,14 +42,22 @@ export const LoggedOut = () => (
 
     <NativeStack.Screen
       name={Route.SIGN_UP}
-      component={SignUpScreen}
-      options={{ headerShown: isIos }}
+      component={SignUp}
+      options={{
+        title: '',
+        headerShown: isIos,
+        headerRight: () => isIos && <CancelButton />,
+      }}
     />
 
     <NativeStack.Screen
       name={Route.RESET_PASSWORD}
-      component={ResetPasswordScreen}
-      options={{ headerShown: isIos }}
+      component={ResetPassword}
+      options={{
+        title: '',
+        headerShown: isIos,
+        headerRight: () => isIos && <CancelButton />,
+      }}
     />
   </NativeStack.Navigator>
 );
