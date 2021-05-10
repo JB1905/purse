@@ -107,6 +107,7 @@ const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
                   secureTextEntry={securePassword}
                   errorMessage={errors.password}
                   rightIcon={
+                    // TODO refactor
                     <TouchableOpacity
                       onPress={() => setSecurePassword(!securePassword)}
                     >

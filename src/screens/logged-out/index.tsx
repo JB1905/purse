@@ -18,6 +18,7 @@ const NativeStack = createNativeStackNavigator<LoggedOutParamList>();
 // TODO move to utils/constants
 const isIos = Platform.OS === 'ios';
 
+// TODO add confirm on cancel
 const CancelButton = () => {
   const navigation = useNavigation();
 
@@ -26,6 +27,13 @@ const CancelButton = () => {
     <HeaderButton title="Cancel" iconName="close" onPress={navigation.goBack} />
   );
 };
+
+// TODO add type
+const modalScreenOptions = {
+  title: '',
+  headerShown: isIos,
+  headerRight: () => isIos && <CancelButton />,
+}
 
 export const LoggedOut = () => (
   <NativeStack.Navigator
@@ -43,23 +51,13 @@ export const LoggedOut = () => (
     <NativeStack.Screen
       name={Route.SIGN_UP}
       component={SignUp}
-      options={{
-        // TODO move to consts
-        title: '',
-        headerShown: isIos,
-        headerRight: () => isIos && <CancelButton />,
-      }}
+      options={modalScreenOptions}
     />
 
     <NativeStack.Screen
       name={Route.RESET_PASSWORD}
       component={ResetPassword}
-      options={{
-        // TODO move to consts
-        title: '',
-        headerShown: isIos,
-        headerRight: () => isIos && <CancelButton />,
-      }}
+      options={modalScreenOptions}
     />
   </NativeStack.Navigator>
 );
