@@ -46,6 +46,7 @@ const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
     resolver: zodResolver(schema),
   });
 
+  // TODO refactor
   const onSubmit = async (data: FormData) => {
     const { email, password } = data;
 

@@ -27,6 +27,7 @@ export const MainScreen = () => {
       barStyle={{ backgroundColor: colors.background }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
+          // TODO move to function/hook
           let iconName = '';
 
           if (route.name === Route.FINANCES) {

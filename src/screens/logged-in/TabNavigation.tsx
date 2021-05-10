@@ -29,6 +29,7 @@ export const MainScreen = () => {
         tabBarInactiveTintColor: 'gray',
         headerShown: false, // TODO
         tabBarIcon: ({ color }) => {
+          // TODO move to function/hook
           let iconName = '';
 
           if (route.name === Route.FINANCES) {

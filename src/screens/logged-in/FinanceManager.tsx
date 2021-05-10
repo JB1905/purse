@@ -76,6 +76,7 @@ const FinanceManager = ({
     defaultValues,
   });
 
+  // TODO refactor
   const onSubmit = (data: FormData) => {
     const createFinance = () => {
       if (error) setError(undefined);
@@ -257,7 +258,7 @@ const FinanceManager = ({
             >
               <Button
                 title="Add it here"
-                // onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)} // TODO
+                onPress={() => navigation.navigate(Route.CATEGORY_MANAGER)} // TODO
                 type="clear"
               />
             </FallbackScreen>

@@ -44,6 +44,7 @@ export const LoggedOut = () => (
       name={Route.SIGN_UP}
       component={SignUp}
       options={{
+        // TODO move to consts
         title: '',
         headerShown: isIos,
         headerRight: () => isIos && <CancelButton />,
@@ -54,6 +55,7 @@ export const LoggedOut = () => (
       name={Route.RESET_PASSWORD}
       component={ResetPassword}
       options={{
+        // TODO move to consts
         title: '',
         headerShown: isIos,
         headerRight: () => isIos && <CancelButton />,

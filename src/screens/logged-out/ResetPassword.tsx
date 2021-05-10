@@ -40,6 +40,7 @@ const ResetPassword = ({
     resolver: zodResolver(schema),
   });
 
+  // TODO refactor
   const onSubmit = async (data: FormData) => {
     const { email } = data;
 
@@ -63,11 +64,12 @@ const ResetPassword = ({
     setLoading(false);
   };
 
+  // TODO update
   useEffect(() => {
     navigation.setOptions({
       gestureEnabled: !isDirty,
     });
-  }, [isDirty]);
+  }, [navigation, isDirty]);
 
   return (
     <Container full spaces keyboard>
@@ -75,7 +77,6 @@ const ResetPassword = ({
         <Stack space={8}>
           <Stack space={2}>
             <Text h2>Reset Password</Text>
-
             <Text h3>Have you forgotten your password?</Text>
           </Stack>
 

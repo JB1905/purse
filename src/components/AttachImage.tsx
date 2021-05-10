@@ -22,6 +22,7 @@ export const AttachImage = () => {
         anchor: findNodeHandle(ref.current) as number,
       },
       (buttonIndex) => {
+        // TODO refactor
         if (buttonIndex === 0) {
           handleCameraRoll();
         } else if (buttonIndex === 1) {

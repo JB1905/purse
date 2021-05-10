@@ -42,6 +42,7 @@ const SignUp = ({ navigation }: LoggedOutProps<Route.SIGN_UP>) => {
     resolver: zodResolver(schema),
   });
 
+  // TODO refactor
   const onSubmit = async (data: FormData) => {
     const { name, surname, email, password } = data;
 
@@ -65,11 +66,12 @@ const SignUp = ({ navigation }: LoggedOutProps<Route.SIGN_UP>) => {
     setLoading(false);
   };
 
+  // TODO
   useEffect(() => {
     navigation.setOptions({
       gestureEnabled: !isDirty,
     });
-  }, [isDirty]);
+  }, [navigation, isDirty]);
 
   return (
     <Container full spaces keyboard>
@@ -77,7 +79,6 @@ const SignUp = ({ navigation }: LoggedOutProps<Route.SIGN_UP>) => {
         <Stack space={8}>
           <Stack space={2}>
             <Text h2>Sign Up</Text>
-
             <Text h3>Save your money. Start today!</Text>
           </Stack>
 

@@ -103,7 +103,6 @@ export const SearchScreen = () => (
       name={Route.SEARCH} // TODO
       component={Search}
       options={({ navigation }) => ({
-        searchBar: {},
         headerLargeTitle: true,
         ...headerCustomOptions(navigation),
       })}

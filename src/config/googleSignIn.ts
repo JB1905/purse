@@ -10,9 +10,9 @@ export const signInWithGoogleAsync = async () => {
 
     if (result.type === 'success') {
       return result.accessToken;
-    } else {
-      return { cancelled: true };
     }
+
+    return { cancelled: true };
   } catch (e) {
     return { error: true };
   }
