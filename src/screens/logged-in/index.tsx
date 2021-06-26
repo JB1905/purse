@@ -17,6 +17,7 @@ export const LoggedIn = () => (
   <NativeStack.Navigator
     screenOptions={{
       stackPresentation: Platform.OS === 'ios' ? 'formSheet' : 'push',
+      headerShown: true, // TODO
     }}
   >
     <NativeStack.Screen
