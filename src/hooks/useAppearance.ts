@@ -1,6 +1,6 @@
 import { DefaultTheme, DarkTheme, Theme } from '@react-navigation/native';
-import { useMemo } from 'react';
-import { useColorScheme } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import { useColorScheme, Appearance } from 'react-native';
 
 const primary = '#24b467';
 
@@ -21,11 +21,19 @@ const darkTheme: Theme = {
 };
 
 export const useAppearance = () => {
-  const scheme = useColorScheme();
+  const colorScheme = useColorScheme();
 
-  const isDark = useMemo(() => scheme === 'dark', []);
+  // TODO update - duplicated colorScheme === 'dark' - create util for it
+  const [isDark, setIsDark] = useState(colorScheme === 'dark');
 
-  const activeMode = useMemo(() => (isDark ? darkTheme : lightTheme), []);
+  useEffect(() => {
+    Appearance.addChangeListener(({ colorScheme }) =>
+      setIsDark(colorScheme === 'dark')
+    );
+  }, []);
+
+  // TODO add missing values to dependecy array
+  const activeMode = useMemo(() => (isDark ? darkTheme : lightTheme), [isDark]);
 
   return { activeMode, isDark };
 };
