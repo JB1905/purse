@@ -58,7 +58,7 @@ const CategoryManager = ({
   const {
     handleSubmit,
     control,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty, isValid, isSubmitted },
     reset,
     watch,
   } = useForm<FormData>({
@@ -148,6 +148,7 @@ const CategoryManager = ({
             title="Cancel"
             iconName="close"
             onPress={navigation.goBack}
+            // TODO onPress display confirmation when is dirty
             spaces
           />
         ),
@@ -156,13 +157,15 @@ const CategoryManager = ({
             title="Save"
             iconName="save"
             onPress={handleSubmit(onSubmit)}
+            disabled={!isValid && isSubmitted}
             spaces
           />
         ),
-        gestureEnabled: !isDirty, // TODO
+        // TODO onBack/onGesture display confirmation when is dirty
+        gestureEnabled: !isDirty,
       });
     }, 100);
-  }, [navigation, isDirty]);
+  }, [navigation, isDirty, isValid, isSubmitted]);
 
   return (
     <Container keyboard scrollEnabled>
