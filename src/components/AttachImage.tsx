@@ -5,6 +5,12 @@ import { ActionSheetIOS, findNodeHandle, Button } from 'react-native';
 import { usePhotos } from '../hooks/usePhotos';
 import { useCamera } from '../hooks/useCamera';
 
+// TODO? move to enums
+enum AttachImageMenuItem {
+  CameraRoll = 0,
+  Camera = 1,
+}
+
 export const AttachImage = () => {
   const { colors } = useTheme();
 
@@ -21,12 +27,17 @@ export const AttachImage = () => {
         tintColor: colors.primary,
         anchor: findNodeHandle(ref.current) as number,
       },
+      // TODO? extract function
       (buttonIndex) => {
-        // TODO refactor
-        if (buttonIndex === 0) {
-          handleCameraRoll();
-        } else if (buttonIndex === 1) {
-          handleCamera();
+        switch(buttonIndex) {
+          case AttachImageMenuItem.CameraRoll:
+            return handleCameraRoll();
+
+          case AttachImageMenuItem.Camera:
+            return handleCamera();
+
+          default:
+            break;
         }
       }
     );
