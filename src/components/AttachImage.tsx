@@ -7,8 +7,8 @@ import { useCamera } from '../hooks/useCamera';
 
 // TODO? move to enums
 enum AttachImageMenuItem {
-  CameraRoll = 0,
-  Camera = 1,
+  CameraRoll,
+  Camera,
 }
 
 export const AttachImage = () => {
