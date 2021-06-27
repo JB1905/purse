@@ -46,7 +46,7 @@
     "firebase": "8.2.3",
     "gravatar": "^1.8.1",
     "i18n-js": "^3.8.0",
-    "native-color-picker": "^1.4.0-alpha.0.1",
+    "native-color-picker": "^2.0.0-beta.1",
     "react": "16.13.1",
     "react-compose-wrappers": "^0.1.0",
     "react-dom": "16.13.1",
