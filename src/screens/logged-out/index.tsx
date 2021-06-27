@@ -33,7 +33,7 @@ const modalScreenOptions = {
   title: '',
   headerShown: isIos,
   headerRight: () => isIos && <CancelButton />,
-}
+};
 
 export const LoggedOut = () => (
   <NativeStack.Navigator
