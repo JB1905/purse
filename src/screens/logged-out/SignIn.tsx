@@ -21,6 +21,9 @@ import type { LoggedOutProps } from '../../types/Navigation';
 
 import { Route } from '../../enums/Route';
 
+import { useFacebookAuth } from '../../config/facebookSignIn';
+import { useGoogleAuth } from '../../config/googleSignIn';
+
 const schema = z.object({
   email: z.string().email().nonempty(),
   password: z.string().nonempty(),
@@ -35,6 +38,9 @@ const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
 
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(false);
+
+  const googleAuth = useGoogleAuth();
+  const facebookAuth = useFacebookAuth();
 
   const [securePassword, setSecurePassword] = useState(true);
 
@@ -134,6 +140,19 @@ const SignIn = ({ navigation }: LoggedOutProps<Route.SIGN_IN>) => {
               onPress={() => navigation.navigate(Route.RESET_PASSWORD)}
               type="clear"
             />
+
+            <View>
+              <Button
+                title="Google"
+                disabled={!googleAuth.request}
+                onPress={() => googleAuth.promptAsync()}
+              />
+              <Button
+                title="Facebook"
+                disabled={!facebookAuth.request}
+                onPress={() => facebookAuth.promptAsync()}
+              />
+            </View>
 
             <Button
               title="Sign Up"

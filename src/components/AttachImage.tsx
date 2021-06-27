@@ -29,7 +29,7 @@ export const AttachImage = () => {
       },
       // TODO? extract function
       (buttonIndex) => {
-        switch(buttonIndex) {
+        switch (buttonIndex) {
           case AttachImageMenuItem.CameraRoll:
             return handleCameraRoll();
 

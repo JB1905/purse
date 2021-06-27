@@ -1,24 +1,24 @@
-import * as Facebook from 'expo-facebook';
+import * as Facebook from 'expo-auth-session/providers/facebook';
+import { ResponseType } from 'expo-auth-session';
+import firebase from 'firebase';
+import { useEffect } from 'react';
 
-export const signInWithFacebookAsync = async () => {
-  try {
-    await Facebook.initializeAsync(process.env.FACEBOOK_APP_ID as string);
+export const useFacebookAuth = () => {
+  const [request, response, promptAsync] = Facebook.useAuthRequest({
+    responseType: ResponseType.Token,
+    clientId: '<YOUR FBID>', // TODO
+  });
 
-    const fb = await Facebook.logInWithReadPermissionsAsync({
-      permissions: ['public_profile'],
-    });
+  useEffect(() => {
+    if (response?.type === 'success') {
+      const { access_token } = response.params;
 
-    if (fb.type === 'success') {
-      const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${fb.token}`
-      );
+      const credential =
+        firebase.auth.FacebookAuthProvider.credential(access_token);
 
-      // return fb.token;
-      return await response.json();
-    } else {
-      // TODO
+      firebase.auth().signInWithCredential(credential);
     }
-  } catch ({ message }) {
-    alert(`Facebook Login Error: ${message}`);
-  }
+  }, [response]);
+
+  return { request, promptAsync };
 };

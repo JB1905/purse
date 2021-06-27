@@ -1,19 +1,21 @@
-import * as Google from 'expo-google-app-auth';
+import * as Google from 'expo-auth-session/providers/google';
+import firebase from 'firebase';
+import { useEffect } from 'react';
 
-export const signInWithGoogleAsync = async () => {
-  try {
-    const result = await Google.logInAsync({
-      androidClientId: process.env.GOOGLE_ANDROID_CLIENT_ID,
-      iosClientId: process.env.GOOGLE_IOS_CLIENT_ID,
-      scopes: ['profile', 'email'],
-    });
+export const useGoogleAuth = () => {
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+    clientId: 'Your-Web-Client-ID.apps.googleusercontent.com', // TODO
+  });
 
-    if (result.type === 'success') {
-      return result.accessToken;
+  useEffect(() => {
+    if (response?.type === 'success') {
+      const { id_token } = response.params;
+
+      const credential = firebase.auth.GoogleAuthProvider.credential(id_token);
+
+      firebase.auth().signInWithCredential(credential);
     }
+  }, [response]);
 
-    return { cancelled: true };
-  } catch (e) {
-    return { error: true };
-  }
+  return { request, promptAsync };
 };
