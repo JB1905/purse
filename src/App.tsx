@@ -7,7 +7,6 @@ import {
   ReactReduxFirebaseProviderProps,
 } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
-import { AppearanceProvider } from 'react-native-appearance';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
   NavigationContainer,
@@ -64,7 +63,6 @@ const App = () => {
       </ReactReduxFirebaseProvider>
     ),
     (props) => <SafeAreaProvider>{props.children}</SafeAreaProvider>,
-    (props) => <AppearanceProvider>{props.children}</AppearanceProvider>,
     (props) => (
       <NavigationContainer theme={activeMode} ref={navigationRef}>
         {props.children}
