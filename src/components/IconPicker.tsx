@@ -15,7 +15,7 @@ interface Props {
 const IconPicker = ({ icons, selectedIcon, onSelect, color }: Props) => {
   const { colors } = useTheme();
 
-  console.log(selectedIcon, color)
+  console.log(selectedIcon, color);
 
   return (
     <FlatList

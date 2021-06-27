@@ -4220,6 +4220,11 @@
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
 
+"@types/i18n-js@^3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@types/i18n-js/-/i18n-js-3.8.1.tgz#3e36f79e8f535645ace338e22e724cbee544f3b1"
+  integrity sha512-s6GGXB8CYsFZMqSgussqGwYrrjApoTjXPkp0/9txUzO4CPkr+sJpWw19O4r3NYHy8ul6lKuQbP7C3Qk1JU2Kpw==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.3.tgz#4ba8ddb720221f432e443bd5f9117fd22cfd4762"
@@ -6221,6 +6226,13 @@ expo-local-authentication@~11.0.2:
   dependencies:
     "@expo/config-plugins" "^1.0.18"
     invariant "^2.2.4"
+
+expo-localization@~10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/expo-localization/-/expo-localization-10.1.0.tgz#4371fa6c092c4e86edfabff504313710d99b28ef"
+  integrity sha512-covyQ1YJneUBvjkNp0p8Lp7ej5Plz1OpJiwA2P6O3hZ4yVVqNDOOAb2WADLARPtxNJrDdntSozgI+JSz/yQxmQ==
+  dependencies:
+    rtl-detect "^1.0.2"
 
 expo-location@~12.0.4:
   version "12.0.4"
@@ -9897,6 +9909,11 @@ rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
+
+rtl-detect@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/rtl-detect/-/rtl-detect-1.0.3.tgz#42145b9a4f9cf0b94c4542aba90d57f0d18559bf"
+  integrity sha512-2sMcZO60tL9YDEFe24gqddg3hJ+xSmJFN8IExcQUxeHxQzydQrN6GHPL+yAWgzItXSI7es53hcZC9pJneuZDKA==
 
 run-async@^2.2.0:
   version "2.4.1"
