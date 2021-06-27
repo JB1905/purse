@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
-import Constants from 'expo-constants';
+import * as Application from 'expo-application';
 import { useTheme } from '@react-navigation/native';
 
 const AppInfo = () => {
@@ -9,8 +9,8 @@ const AppInfo = () => {
 
   return (
     <Text style={StyleSheet.flatten([styles.info, { color: colors.text }])}>
-      {Constants.manifest.name} Version {Constants.nativeAppVersion} (
-      {Constants.nativeBuildVersion})
+      {Application.applicationName} Version {Application.nativeApplicationVersion} (
+      {Application.nativeBuildVersion})
     </Text>
   );
 };

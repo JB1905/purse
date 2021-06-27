@@ -32,6 +32,7 @@
     "email-validator": "^2.0.4",
     "expo": "^41.0.1",
     "expo-app-loading": "^1.0.3",
+    "expo-application": "^3.1.2",
     "expo-blur": "~9.0.3",
     "expo-camera": "~11.0.3",
     "expo-constants": "~10.1.3",
