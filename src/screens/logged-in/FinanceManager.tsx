@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { Alert } from 'react-native';
-import { Picker } from '@react-native-community/picker';
+import { Picker } from '@react-native-picker/picker';
 import { Controller, useForm } from 'react-hook-form';
 import { useFirestoreConnect, useFirestore } from 'react-redux-firebase';
 import { Box, Stack } from '@mobily/stacks';
