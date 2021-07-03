@@ -16,7 +16,7 @@ const NativeStack = createNativeStackNavigator<LoggedInParamList>();
 export const LoggedIn = () => (
   <NativeStack.Navigator
     screenOptions={{
-      stackPresentation: Platform.OS === 'ios' ? 'formSheet' : 'push',
+      stackPresentation: Platform.OS === 'ios' ? 'formSheet' : 'push', // TODO
       headerShown: true, // TODO
     }}
   >
