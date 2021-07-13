@@ -11,8 +11,7 @@ import { AppearanceProvider } from 'react-native-appearance';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
   NavigationContainer,
-  NavigationContainerRef,
-  ParamListBase,
+  useNavigationContainerRef,
 } from '@react-navigation/native';
 import { ThemeProvider } from 'react-native-elements';
 import { StacksProvider } from '@mobily/stacks';
@@ -48,7 +47,7 @@ const App = () => {
 
   const { activeMode, isDark } = useAppearance();
 
-  const navigationRef = useRef<NavigationContainerRef<ParamListBase>>(null);
+  const navigationRef = useNavigationContainerRef();
 
   useReduxDevToolsExtension(navigationRef);
 
